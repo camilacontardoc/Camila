@@ -35,18 +35,18 @@ const alerts = [
   }
 ];
 
-const fieldbook = [
-  { date: "18/06/2026 09:10", lot: "M4-L12", detail: "CNN detecta patrón compatible con Botrytis. Riesgo alto por humedad relativa elevada.", owner: "IA asistida" },
-  { date: "18/06/2026 09:18", lot: "M4-L12", detail: "Prescripción congelada hasta firma digital del biotecnólogo responsable.", owner: "Gobernanza" },
-  { date: "17/06/2026 16:42", lot: "M2-L07", detail: "Se recomienda repetir captura con menor reflejo lumínico. Imagen aceptable, confianza media.", owner: "Operario 2" }
-];
-
 const lotProfiles = {
-  "M4-L12": { species: "Arándano", variety: "Legacy", phase: "Crecimiento activo", module: "M4" },
-  "M5-L18": { species: "Arándano", variety: "Duke", phase: "Crecimiento activo", module: "M5" },
-  "M2-L07": { species: "Avellano", variety: "Barcelona", phase: "Aclimatación", module: "M2" },
-  "M1-L03": { species: "Cerezo", variety: "Regina", phase: "Endurecimiento", module: "M1" }
+  "M4-L12": { location: "Invernadero 4 · Nave A", species: "Arándano", variety: "Legacy", phase: "Crecimiento activo", module: "M4" },
+  "M5-L18": { location: "Invernadero 5 · Nave B", species: "Arándano", variety: "Duke", phase: "Crecimiento activo", module: "M5" },
+  "M2-L07": { location: "Invernadero 2 · Mesón 7", species: "Avellano", variety: "Barcelona", phase: "Aclimatación", module: "M2" },
+  "M1-L03": { location: "Invernadero 1 · Mesón 3", species: "Cerezo", variety: "Regina", phase: "Endurecimiento", module: "M1" }
 };
+
+const fieldbook = [
+  createFieldbookEntry("M4-L12", "18/06/2026 09:10", "CNN detecta patrón compatible con Botrytis. Riesgo alto por humedad relativa elevada.", "IA asistida"),
+  createFieldbookEntry("M4-L12", "18/06/2026 09:18", "Prescripción congelada hasta firma digital del biotecnólogo responsable.", "Gobernanza"),
+  createFieldbookEntry("M2-L07", "17/06/2026 16:42", "Se recomienda repetir captura con menor reflejo lumínico. Imagen aceptable, confianza media.", "Operario 2")
+];
 
 const diagnosisRules = {
   interveinal_old: {
@@ -248,17 +248,97 @@ function renderApprovalOptions() {
     .join("");
 }
 
-function renderFieldbook() {
-  $("#fieldbookRows").innerHTML = fieldbook.map((row) => `
-    <article class="field-entry">
-      <small>${row.date}</small>
-      <div>
-        <strong>${row.lot}</strong>
-        <span>${row.detail}</span>
+function getLotProfile(lotId) {
+  const normalizedLot = normalizeLotId(lotId);
+  return lotProfiles[normalizedLot] || {
+    location: "Ubicación por asignar",
+    species: "Especie por asignar",
+    variety: "Variedad por asignar",
+    phase: "Fase por asignar",
+    module: normalizedLot || "Sin módulo"
+  };
+}
+
+function normalizeLotId(value) {
+  const text = String(value || "").trim();
+  const knownLot = Object.keys(lotProfiles).find((lotId) => text.includes(lotId));
+  return knownLot || text || "Lote sin identificar";
+}
+
+function createFieldbookEntry(lotId, date, detail, owner) {
+  const normalizedLot = normalizeLotId(lotId);
+  const profile = getLotProfile(normalizedLot);
+  return {
+    date,
+    lot: normalizedLot,
+    location: profile.location,
+    species: profile.species,
+    variety: profile.variety,
+    phase: profile.phase,
+    detail,
+    owner
+  };
+}
+
+function fieldbookKey(row) {
+  return `${row.lot}__${row.location}__${row.species}__${row.variety}`;
+}
+
+function renderFieldbook(filter = $("#fieldbookFilter")?.value || "all") {
+  const visibleRows = filter === "all" ? fieldbook : fieldbook.filter((row) => row.lot === filter);
+  const groups = visibleRows.reduce((acc, row) => {
+    const key = fieldbookKey(row);
+    if (!acc[key]) {
+      acc[key] = {
+        lot: row.lot,
+        location: row.location,
+        species: row.species,
+        variety: row.variety,
+        phase: row.phase,
+        rows: []
+      };
+    }
+    acc[key].rows.push(row);
+    return acc;
+  }, {});
+
+  $("#fieldbookSummary").innerHTML = `
+    <span class="badge">${Object.keys(groups).length} cuadernos</span>
+    <span class="badge">${visibleRows.length} registros</span>
+  `;
+
+  $("#fieldbookRows").innerHTML = Object.values(groups).map((group) => `
+    <section class="fieldbook-group">
+      <header class="fieldbook-group-header">
+        <div>
+          <strong>${group.lot} · ${group.location}</strong>
+          <span>${group.species} · ${group.variety} · ${group.phase}</span>
+        </div>
+        <span class="badge">${group.rows.length} registros</span>
+      </header>
+      <div class="fieldbook-group-rows">
+        ${group.rows.map((row) => `
+          <article class="field-entry">
+            <small>${row.date}</small>
+            <div>
+              <strong>${row.owner}</strong>
+              <span>${row.detail}</span>
+            </div>
+            <span class="badge">${row.species} ${row.variety}</span>
+          </article>
+        `).join("")}
       </div>
-      <span class="badge">${row.owner}</span>
+    </section>
+  `).join("") || `
+    <article class="field-entry">
+      <small>Sin registros</small>
+      <div>
+        <strong>No hay entradas para este cuaderno</strong>
+        <span>Selecciona otro lote o genera un diagnóstico automático desde Captura.</span>
+      </div>
+      <span class="badge">Vacío</span>
     </article>
-  `).join("");
+  `;
 }
 
 function renderProgram() {
@@ -469,12 +549,12 @@ function buildManagementPlan(lotId, diagnosis, risk) {
 
 function writeAutoFieldbook(lotId, diagnosis, signal, risk, plan) {
   const signalText = `verde ${(signal.greenRatio * 100).toFixed(0)}%, amarillo ${(signal.yellowRatio * 100).toFixed(0)}%, pardo ${(signal.brownRatio * 100).toFixed(0)}%, gris ${(signal.grayRatio * 100).toFixed(0)}%`;
-  fieldbook.unshift({
-    date: new Date().toLocaleString("es-CL", { dateStyle: "short", timeStyle: "short" }),
-    lot: lotId,
-    detail: `Detección automática: ${diagnosis.nutrition}; posible patógeno: ${diagnosis.label}; riesgo ${risk}%. Señales imagen: ${signalText}. Plan: ${plan.fertilizer} ${plan.pesticide} SAG: ${plan.sag}`,
-    owner: "PhytoAI automático"
-  });
+  fieldbook.unshift(createFieldbookEntry(
+    lotId,
+    new Date().toLocaleString("es-CL", { dateStyle: "short", timeStyle: "short" }),
+    `Detección automática: ${diagnosis.nutrition}; posible patógeno: ${diagnosis.label}; riesgo ${risk}%. Señales imagen: ${signalText}. Plan: ${plan.fertilizer} ${plan.pesticide} SAG: ${plan.sag}`,
+    "PhytoAI automático"
+  ));
   renderFieldbook();
 }
 
@@ -581,12 +661,12 @@ function runDiagnosis(event) {
     </div>
   `;
 
-  fieldbook.unshift({
-    date: new Date().toLocaleString("es-CL", { dateStyle: "short", timeStyle: "short" }),
+  fieldbook.unshift(createFieldbookEntry(
     lot,
-    detail: `${rule.nutrition}; posible patógeno: ${rule.pathogen}. Acción: ${rule.action}`,
-    owner: "Diagnóstico asistido"
-  });
+    new Date().toLocaleString("es-CL", { dateStyle: "short", timeStyle: "short" }),
+    `${rule.nutrition}; posible patógeno: ${rule.pathogen}. Acción: ${rule.action}`,
+    "Diagnóstico asistido"
+  ));
   renderFieldbook();
   showToast("Diagnóstico generado y agregado al cuaderno de campo.");
 }
@@ -594,13 +674,18 @@ function runDiagnosis(event) {
 window.runPhytoDiagnosis = runDiagnosis;
 
 function exportCsv() {
-  const rows = [["Fecha", "Lote", "Detalle", "Responsable"], ...fieldbook.map((row) => [row.date, row.lot, row.detail, row.owner])];
+  const filter = $("#fieldbookFilter")?.value || "all";
+  const rowsToExport = filter === "all" ? fieldbook : fieldbook.filter((row) => row.lot === filter);
+  const rows = [
+    ["Fecha", "Lote", "Ubicación", "Especie", "Variedad", "Fase", "Detalle", "Responsable"],
+    ...rowsToExport.map((row) => [row.date, row.lot, row.location, row.species, row.variety, row.phase, row.detail, row.owner])
+  ];
   const csv = rows.map((row) => row.map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(",")).join("\n");
   const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = "cuaderno-campo-phytoai.csv";
+  link.download = filter === "all" ? "cuadernos-campo-phytoai.csv" : `cuaderno-${filter}-phytoai.csv`;
   link.click();
   URL.revokeObjectURL(url);
   showToast("CSV del cuaderno de campo generado.");
@@ -611,6 +696,7 @@ $$(".nav-item").forEach((button) => {
 });
 
 $("#speciesFilter").addEventListener("change", (event) => renderModules(event.target.value));
+$("#fieldbookFilter").addEventListener("change", (event) => renderFieldbook(event.target.value));
 $("#toggleDensity").addEventListener("click", () => document.body.classList.toggle("compact"));
 $("#newAlertBtn").addEventListener("click", () => setView("capture"));
 $("#analyzeBtn").addEventListener("click", analyzeImage);
