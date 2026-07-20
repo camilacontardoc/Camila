@@ -337,6 +337,7 @@ input {
 .module-list,
 .flow,
 .fieldbook,
+.fieldbook-group-rows,
 .learning-list {
   display: grid;
   gap: 12px;
@@ -397,11 +398,63 @@ input {
 .pitch-timeline article,
 .learning-list article,
 .risk-card,
-.field-entry {
+.field-entry,
+.fieldbook-group {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fbfdf9;
   padding: 14px;
+}
+
+.fieldbook-tools {
+  display: grid;
+  grid-template-columns: minmax(260px, 420px) 1fr;
+  gap: 14px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+
+.fieldbook-tools label {
+  display: grid;
+  gap: 7px;
+  font-weight: 800;
+}
+
+.fieldbook-summary {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.fieldbook-group {
+  background: #fff;
+  padding: 0;
+  overflow: hidden;
+}
+
+.fieldbook-group-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 15px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.fieldbook-group-header strong,
+.fieldbook-group-header span {
+  display: block;
+}
+
+.fieldbook-group-header span {
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.fieldbook-group-rows {
+  padding: 12px;
 }
 
 .flow div {
@@ -820,10 +873,15 @@ body.compact .metric {
   .top-actions,
   .approval-actions,
   .capture-controls,
-  .capture-actions {
+  .capture-actions,
+  .fieldbook-tools {
     width: 100%;
     grid-template-columns: 1fr;
     display: grid;
+  }
+
+  .fieldbook-summary {
+    justify-content: flex-start;
   }
 
   .primary-action,
