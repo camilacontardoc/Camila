@@ -349,9 +349,22 @@
           <div class="panel-header">
             <div>
               <p class="eyebrow">Trazabilidad</p>
-              <h2>Cuaderno de campo digital</h2>
+              <h2>Cuadernos por lote, ubicación, especie y variedad</h2>
             </div>
             <button class="secondary-action" id="exportBtn">Exportar CSV</button>
+          </div>
+          <div class="fieldbook-tools">
+            <label>
+              Filtrar cuaderno
+              <select id="fieldbookFilter">
+                <option value="all">Todos los cuadernos</option>
+                <option value="M4-L12">M4-L12 · Invernadero 4 · Arándano Legacy</option>
+                <option value="M5-L18">M5-L18 · Invernadero 5 · Arándano Duke</option>
+                <option value="M2-L07">M2-L07 · Invernadero 2 · Avellano Barcelona</option>
+                <option value="M1-L03">M1-L03 · Invernadero 1 · Cerezo Regina</option>
+              </select>
+            </label>
+            <div class="fieldbook-summary" id="fieldbookSummary"></div>
           </div>
           <div class="fieldbook" id="fieldbookRows"></div>
         </section>
