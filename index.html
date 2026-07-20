@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PhytoAI | Gestión Fitosanitaria Inteligente</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <aside class="sidebar" aria-label="Navegación principal">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" role="img">
+            <path d="M20 4c8 0 15 6.6 15 14.8 0 11-15 17.2-15 17.2S5 29.8 5 18.8C5 10.6 12 4 20 4Z"></path>
+            <path d="M13 20c5.8.2 10.8-2.4 15-7 .3 8-4.3 13.2-12.7 15"></path>
+          </svg>
+        </div>
+        <div>
+          <strong>PhytoAI</strong>
+          <span>SynergiaBIO Chile</span>
+        </div>
+      </div>
+
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="dashboard" aria-label="Tablero">
+          <span class="nav-icon">⌁</span>
+          Tablero
+        </button>
+        <button class="nav-item" data-view="capture" aria-label="Captura">
+          <span class="nav-icon">□</span>
+          Captura
+        </button>
+        <button class="nav-item" data-view="validation" aria-label="Validación">
+          <span class="nav-icon">✓</span>
+          Validación
+        </button>
+        <button class="nav-item" data-view="diagnosis" aria-label="Diagnóstico">
+          <span class="nav-icon">◎</span>
+          Diagnóstico
+        </button>
+        <button class="nav-item" data-view="program" aria-label="Programa">
+          <span class="nav-icon">▦</span>
+          Programa
+        </button>
+        <button class="nav-item" data-view="fieldbook" aria-label="Cuaderno">
+          <span class="nav-icon">≡</span>
+          Cuaderno
+        </button>
+      </nav>
+
+      <div class="operator-card">
+        <span class="status-dot"></span>
+        <div>
+          <strong>Modo campo</strong>
+          <span>Botones 48dp · Alto contraste · Human-in-the-loop</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Vivero ex vitro · Región del Maule</p>
+          <h1>Gestión fitosanitaria preventiva por especie y lote</h1>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" id="toggleDensity" title="Cambiar densidad visual" aria-label="Cambiar densidad visual">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+          </button>
+          <button class="primary-action" id="newAlertBtn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+            Nueva alerta
+          </button>
+        </div>
+      </header>
+
+      <section class="view active" id="dashboard">
+        <div class="metrics-grid">
+          <article class="metric">
+            <span>Pérdida actual estimada</span>
+            <strong>15-40%</strong>
+            <small>Descarte por detección tardía y gestión curativa.</small>
+          </article>
+          <article class="metric success">
+            <span>Meta PhytoAI</span>
+            <strong>&lt;10%</strong>
+            <small>Mortalidad vegetal con detección temprana y trazabilidad.</small>
+          </article>
+          <article class="metric warning">
+            <span>Reducción de agroquímicos</span>
+            <strong>15-25%</strong>
+            <small>Aplicación diferenciada por especie y validación técnica.</small>
+          </article>
+          <article class="metric">
+            <span>Adopción mínima</span>
+            <strong>90%</strong>
+            <small>Reportes autónomos en menos de 2 minutos por lote.</small>
+          </article>
+        </div>
+
+        <div class="work-grid">
+          <section class="panel risk-panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Índice predictivo</p>
+                <h2>Riesgo por módulo</h2>
+              </div>
+              <select id="speciesFilter" aria-label="Filtrar por especie">
+                <option value="all">Todas las especies</option>
+                <option value="Arándano">Arándano</option>
+                <option value="Avellano">Avellano</option>
+                <option value="Cerezo">Cerezo</option>
+              </select>
+            </div>
+            <div class="module-list" id="moduleList"></div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Flujo IA</p>
+                <h2>De inspección visual a decisión trazable</h2>
+              </div>
+            </div>
+            <div class="flow">
+              <div><strong>1</strong><span>Captura foliar masiva</span></div>
+              <div><strong>2</strong><span>CNN detecta señales subclínicas</span></div>
+              <div><strong>3</strong><span>Modelo predictivo calcula riesgo</span></div>
+              <div><strong>4</strong><span>Biotecnólogo firma o rechaza</span></div>
+              <div><strong>5</strong><span>Cuaderno de campo automático</span></div>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Alertas activas</p>
+              <h2>Prescripciones pendientes de revisión humana</h2>
+            </div>
+          </div>
+          <div class="alerts-table" id="alertsTable"></div>
+        </section>
+      </section>
+
+      <section class="view" id="capture">
+        <div class="capture-layout">
+          <section class="panel capture-phone" aria-label="Prototipo móvil de captura">
+            <div class="phone-bar"></div>
+            <div class="camera-frame" id="cameraFrame">
+              <video id="cameraVideo" autoplay playsinline muted></video>
+              <img id="previewImage" alt="Imagen foliar seleccionada">
+              <div class="leaf leaf-a"></div>
+              <div class="leaf leaf-b"></div>
+              <div class="spot"></div>
+              <div class="scan-line"></div>
+            </div>
+            <canvas id="captureCanvas" hidden></canvas>
+            <input id="imageInput" type="file" accept="image/*" capture="environment" hidden>
+            <div class="lot-controls">
+              <label>
+                Lote
+                <select id="captureLot">
+                  <option value="M4-L12">M4-L12 · Arándano Legacy</option>
+                  <option value="M5-L18">M5-L18 · Arándano Duke</option>
+                  <option value="M2-L07">M2-L07 · Avellano Barcelona</option>
+                  <option value="M1-L03">M1-L03 · Cerezo Regina</option>
+                </select>
+              </label>
+              <label>
+                Ambiente
+                <select id="captureEnvironment">
+                  <option value="humid">Alta humedad / baja ventilación</option>
+                  <option value="wet_root">Sustrato saturado</option>
+                  <option value="warm_moist">Temperatura alta y humedad</option>
+                  <option value="normal">Condición normal</option>
+                </select>
+              </label>
+            </div>
+            <div class="capture-actions">
+              <button class="secondary-action" id="uploadBtn" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"></path></svg>
+                Subir imagen
+              </button>
+              <button class="secondary-action" id="cameraBtn" type="button">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h4l2-3h4l2 3h4v11H4z"></path><circle cx="12" cy="13" r="3"></circle></svg>
+                Abrir cámara
+              </button>
+              <button class="secondary-action" id="snapBtn" type="button" disabled>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+                Tomar foto
+              </button>
+            </div>
+            <button class="primary-action full" id="analyzeBtn">Detectar automáticamente</button>
+          </section>
+
+          <section class="panel">
+            <p class="eyebrow">Resultado simulado</p>
+            <h2>Recomendación asistida</h2>
+            <div class="recommendation" id="recommendation">
+              <span class="badge">Esperando captura</span>
+              <p>Sube una imagen o toma una foto. PhytoAI estimará deficiencia nutricional, posible patógeno, riesgo del lote y plan de manejo, dejando registro automático en el cuaderno de campo.</p>
+            </div>
+            <div class="callout">
+              <strong>Diagnóstico orientativo</strong>
+              <p>Este prototipo usa lectura de color/contraste de la imagen y reglas técnicas. Para producción debe entrenarse con imágenes propias, análisis foliar/sustrato, confirmación de laboratorio y catálogo SAG actualizado.</p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="validation">
+        <div class="split">
+          <section class="panel">
+            <p class="eyebrow">Human-in-the-loop</p>
+            <h2>Firma digital obligatoria</h2>
+            <p class="lead">La IA recomienda; el biotecnólogo decide. Ninguna aplicación de fungicidas, fertilizantes o herbicidas se libera sin validación humana.</p>
+            <form class="approval-form" id="approvalForm">
+              <label>
+                Alerta a revisar
+                <select id="approvalAlert"></select>
+              </label>
+              <label>
+                PIN técnico
+                <input type="password" inputmode="numeric" maxlength="4" placeholder="1234" id="pinInput">
+              </label>
+              <div class="approval-actions">
+                <button type="button" class="danger-action" id="rejectBtn">Rechazar</button>
+                <button type="submit" class="primary-action">Firmar</button>
+              </div>
+            </form>
+          </section>
+          <section class="panel lock-panel">
+            <div class="lock-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0 1 10 0v3M6 11h12v9H6z"></path></svg>
+            </div>
+            <h2>Bloqueo de prescripción</h2>
+            <p>La app no puede enviar órdenes a bodega ni generar aplicación directa mientras la alerta no tenga firma digital del experto responsable.</p>
+            <div class="governance-list">
+              <span>Catálogo SAG vinculado</span>
+              <span>Rangos máximos por especie</span>
+              <span>Registro auditable por lote</span>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="diagnosis">
+        <div class="diagnosis-layout">
+          <section class="panel">
+            <p class="eyebrow">Diagnóstico asistido</p>
+            <h2>Deficiencia nutricional y posible patógeno</h2>
+            <p class="lead">Selecciona los signos observables en la imagen o en terreno. El sistema cruza síntomas foliares, raíz y ambiente para orientar la hipótesis técnica.</p>
+
+            <form class="diagnosis-form" id="diagnosisForm">
+              <label>
+                Especie o lote
+                <input id="diagLot" placeholder="Ej: Arándano Legacy · M4-L12">
+              </label>
+              <label>
+                Síntoma foliar dominante
+                <select id="leafSymptom">
+                  <option value="interveinal_old">Clorosis interveinal en hojas viejas</option>
+                  <option value="yellow_old">Amarilleo general en hojas viejas</option>
+                  <option value="yellow_new">Hojas nuevas amarillas con nervaduras verdes</option>
+                  <option value="edges_burn">Bordes quemados o necrosis marginal</option>
+                  <option value="purple">Tonos púrpura/rojizos y crecimiento lento</option>
+                  <option value="spots_gray">Lesiones acuosas o moho gris</option>
+                  <option value="wilting">Marchitez, clorosis y decaimiento</option>
+                  <option value="root_rot">Raíz parda/blanda o cuello acuoso</option>
+                </select>
+              </label>
+              <label>
+                Condición ambiental
+                <select id="environmentSignal">
+                  <option value="humid">Alta humedad / baja ventilación</option>
+                  <option value="wet_root">Sustrato saturado o mal drenaje</option>
+                  <option value="warm_moist">Temperatura alta y suelo húmedo</option>
+                  <option value="normal">Sin condición predisponente clara</option>
+                </select>
+              </label>
+              <label>
+                Severidad observada
+                <select id="severitySignal">
+                  <option value="low">Baja: foco pequeño</option>
+                  <option value="medium">Media: varias bandejas afectadas</option>
+                  <option value="high">Alta: avance rápido o pérdida de plantas</option>
+                </select>
+              </label>
+              <button class="primary-action full" type="submit">Determinar diagnóstico</button>
+            </form>
+          </section>
+
+          <section class="panel">
+            <p class="eyebrow">Resultado técnico</p>
+            <h2>Hipótesis y acciones</h2>
+            <div class="diagnosis-result" id="diagnosisResult">
+              <span class="badge">Sin diagnóstico</span>
+              <p>Completa el formulario para estimar deficiencia nutricional, posible patógeno y acciones sugeridas.</p>
+            </div>
+            <div class="source-box">
+              <strong>Base técnica usada</strong>
+              <p>Claves de síntomas nutricionales y fitopatológicos resumidas desde fuentes de extensión y el catálogo normativo SAG. Confirmar con análisis de tejido/sustrato, laboratorio o revisión del biotecnólogo.</p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="program">
+        <div class="program-layout">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Catálogo SAG</p>
+                <h2>Plaguicidas y control normativo</h2>
+              </div>
+              <a class="secondary-link" href="https://www.sag.gob.cl/ambitos-de-accion/listado-de-plaguicidas-autorizados-prohibidos-restringidos-y-cancelados-etiquetas-y-hds" target="_blank" rel="noreferrer">Abrir SAG</a>
+            </div>
+            <div class="sag-grid">
+              <article><strong>Serie 1000</strong><span>Insecticidas, nematicidas y otros.</span></article>
+              <article><strong>Serie 2000</strong><span>Fungicidas.</span></article>
+              <article><strong>Serie 3000</strong><span>Herbicidas.</span></article>
+              <article><strong>Serie 4000</strong><span>Misceláneos.</span></article>
+            </div>
+            <div class="source-box">
+              <strong>Regla de uso</strong>
+              <p>Antes de aplicar, verificar que el producto esté autorizado para el cultivo/uso, revisar etiqueta y HDS, descartar sustancias prohibidas, restringidas o canceladas, y registrar firma técnica.</p>
+            </div>
+            <div class="source-box">
+              <strong>Cómo alimentar el modelo</strong>
+              <p>Por cada lote: imagen foliar/raíz, especie, variedad, fase, fecha, módulo, humedad, temperatura, riego, CE/pH, fertilización aplicada, producto fitosanitario, diagnóstico experto, resultado a 7-14 días y descarte real. Con 50-100 imágenes validadas por clase se puede iniciar un piloto; con 500+ por clase mejora la detección automática.</p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <p class="eyebrow">Programa preventivo</p>
+                <h2>Fertilizantes y pesticidas por fase</h2>
+              </div>
+            </div>
+            <div class="program-table" id="programTable"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="fieldbook">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Trazabilidad</p>
+              <h2>Cuaderno de campo digital</h2>
+            </div>
+            <button class="secondary-action" id="exportBtn">Exportar CSV</button>
+          </div>
+          <div class="fieldbook" id="fieldbookRows"></div>
+        </section>
+      </section>
+
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
