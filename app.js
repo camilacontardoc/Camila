@@ -2,7 +2,57 @@
   { id: "M4-L12", species: "Arándano", variety: "Legacy", pathogen: "Botrytis", risk: 84, status: "Pendiente firma" },
   { id: "M2-L07", species: "Avellano", variety: "Barcelona", pathogen: "Fusarium", risk: 62, status: "Monitorear" },
   { id: "M1-L03", species: "Cerezo", variety: "Regina", pathogen: "Pythium", risk: 38, status: "Preventivo" },
-  { id: "M5-L18", species: "Arándano", variety: "Duke", pathogen: "Botrytis", risk: 71, status: "Pendiente firma" }
+  { id: "M5-L18", species: "Arándano", variety: "Duke", pathogen: "Botrytis", risk: 71, status: "Pendiente firma" },
+  { id: "M3-L08", species: "Frambueso", variety: "Meeker", pathogen: "Botrytis", risk: 54, status: "Monitorear" },
+  { id: "M6-L09", species: "Frutilla", variety: "Albion", pathogen: "Botrytis", risk: 49, status: "Preventivo" },
+  { id: "M7-L13", species: "Mora", variety: "Loch Ness", pathogen: "Fusarium", risk: 57, status: "Monitorear" },
+  { id: "M8-L41", species: "Boldo", variety: "Panguilemu 1", pathogen: "Estrés abiótico", risk: 29, status: "Preventivo" }
+];
+
+const speciesCatalog = [
+  { code: "01", species: "Adesmia", varieties: ["Confusa", "Aphylla", "Hystrix"] },
+  { code: "02", species: "Arándano", varieties: ["Camelia", "Emerald", "Brillitta", "Duke", "Blue crop", "Elliot", "O'neal", "Legacy", "Titanium", "MegasBlue", "Toro", "Blue gold", "Sharp blue", "Biloxi", "Star", "Dazzle (Ridley 4507)", "Echo (Ridley 0808)", "Eureka (Ridley 1403)", "Eureka sunrise (Ridley 1602)", "Eureka sunset (Ridley 1607)", "Firstblush (Ridley 4514)", "Initio (Ridley 1105)", "Opi (Ridley 1111)", "Twilight (Ridley 1812)", "Splash (Ridley 1212)", "Masena (Ridley 4408)", "Draper", "Blue Ribbon", "Suziblue", "Cargo", "Kalinda", "Lilliah", "Selección D", "Merliah", "Midnight", "Eureka gold (Ridley 1702)", "Eureka Maxx (M16-25-03)", "Selección C (Ridley 0803)", "Legacy 1", "Legacy 2", "Legacy 3", "Liberty", "Selección B (M16-25-09)", "MegaEarly (T11-319)", "MegaCrisp (T111-519)", "Megaone (F116)", "MegaGem (T111-219)", "T112-119", "MegaGrand (T112-219)", "MegaStar (T112-519)", "TH-1332", "Ambrosia (TH-1241)", "TH-1356", "AVA (TH-1797)", "Georgia (TH-1797)", "TH-1801", "Sweet Duchess (TH1321)", "Selección G (E-14-01-117)", "Selección H (E-16-48-58)", "Selección K (E-16-49-43)", "Selección L (E-16-73-97)", "PE04", "PE07", "MSU130", "Orb (CW4-BB)", "MegaCrop (T11-119)", "T111-719", "T111-619", "MegaTreat (F4119)", "T111-919", "T111-819", "Top Shelf", "Selección S (M17-36-04)", "Eureka Dawn (M18-73-01)", "Selección U (M19-49-01)", "Selección Z (A20-06-03)", "Blue Moon", "Stella blue", "Sky Blue", "TH-1322", "Maverick (TH-1493)", "TH-1870", "Royal Blue (TH-1991)", "TH-1994", "T-3075", "T-2604", "A54", "A66", "A81", "A132", "A142", "A307", "BA18", "BA20", "BA22", "BA45", "BA46", "BA71", "BA305", "TS", "V2", "Gladiator (TH-1872)", "Tropical Blue (TH-1993)", "Blue Duchess (TH-1876)", "Early Duchess (TH-1334)", "Selección SLA (M19-30-04)", "Selección PC22-0011 (M21-42-01)", "Miss Jackie (TH-917)", "TH-1484", "TH-1600", "TH-1882", "TH-1579", "TH-1654", "TH-1813", "TH-3206"] },
+  { code: "03", species: "Arrayán", varieties: ["Arrayán"] },
+  { code: "04", species: "Avellano", varieties: ["Barcelona", "Tonda di Giffoni", "Polinizante Amarillo", "Polinizante Amarillo (Cassina)", "Polinizante Blanco", "Polinizante Azul", "Polinizante Rojo", "Polinizante Rojo (Mortarella)", "Polinizante verde", "Polinizante verde (Romana)", "Selvática 3", "Selvática 4", "Nalú", "Polinizante Naranjo (Bossio)", "Polinizante Morado (101)"] },
+  { code: "05", species: "Camote", varieties: ["Blanco", "Morado", "Salyboro", "Sumor", "Costanero", "Tenian", "Puerto rico", "Wunguerbol", "Camenzal", "Beauregard", "Café", "Amarillo", "Jewel", "INIVIT-65", "INIVIT-50", "INIVIT-240", "Cautilo (T-33)", "Yabú (T-34)"] },
+  { code: "06", species: "Cerezo", varieties: ["Colt", "Maxma 14", "GiSelA 5", "GiSelA 6", "CAB 6", "GiSelA 3", "GiSelA 12", "GiSelA 13", "GiSelA 17", "Guindo ácido", "Maxma 60", "Skeena", "Regina", "Kordia", "Lapins", "Yamagata C12 Go", "Satonishiki", "Banisyuhu"] },
+  { code: "07", species: "Luma Chequen", varieties: ["AC2", "AC3"] },
+  { code: "08", species: "Frambueso", varieties: ["P1", "P2", "P3", "P4", "P5", "Diamond Jubilee", "Regina", "Meeker", "San Rafael", "Glen Mor", "Skye", "Lewis", "Glen Carron"] },
+  { code: "09", species: "Frutilla", varieties: ["Albion", "Monterrey", "BAU-1", "BAU-4", "JR-2", "JR-8", "PC-3", "PC-12", "JR-3", "JR-6"] },
+  { code: "10", species: "Guayacán", varieties: ["Guayacán"] },
+  { code: "11", species: "Kiwi", varieties: ["1100903", "1101003", "1101903"] },
+  { code: "12", species: "Maqui", varieties: ["34", "35", "36", "39", "49"] },
+  { code: "13", species: "Mora", varieties: ["Columbia Star", "Von", "Selección D (LBA19-41-13)", "Selección E (LBA19-41-15)", "Selección G (LBA19-49-08)", "Loch Ness", "Chester dulce", "Juhas", "Maryna"] },
+  { code: "14", species: "Moringa", varieties: ["Moringa"] },
+  { code: "15", species: "Nogal", varieties: ["Vlach"] },
+  { code: "16", species: "CH Bletioides", varieties: ["CH Bletioides"] },
+  { code: "17", species: "Papa", varieties: ["Amarilla"] },
+  { code: "18", species: "Quillay", varieties: ["Quillay"] },
+  { code: "19", species: "Ruil", varieties: ["Semilla", "Llema", "Ruil"] },
+  { code: "20", species: "Tralhuén", varieties: ["Tralhuén"] },
+  { code: "21", species: "Vides", varieties: ["Vides"] },
+  { code: "22", species: "Yuca", varieties: ["Yuca"] },
+  { code: "23", species: "Chayote", varieties: ["Chayote"] },
+  { code: "24", species: "Luma apiculata", varieties: ["AC1", "AC2"] },
+  { code: "25", species: "Chaura", varieties: ["F3"] },
+  { code: "26", species: "Zarzaparrilla", varieties: ["Rovada"] },
+  { code: "27", species: "Agave", varieties: ["Agave"] },
+  { code: "28", species: "Mangave", varieties: ["Mangave"] },
+  { code: "29", species: "Aloe", varieties: ["Plicatilis", "Samson"] },
+  { code: "30", species: "Pata de canguro", varieties: ["Devil", "Tango", "Tenacity", "Cape red", "Dwarf", "Fire hose", "Harmony", "Tequila"] },
+  { code: "31", species: "Echeveria", varieties: ["Agavoide", "Canate", "Craignana", "Moondust"] },
+  { code: "32", species: "Plátano", varieties: ["Zebrina"] },
+  { code: "33", species: "Phormium", varieties: ["Texax dusky"] },
+  { code: "34", species: "Yucca", varieties: ["Blue Velve"] },
+  { code: "35", species: "Bailahuén", varieties: ["HB"] },
+  { code: "36", species: "Árbol del té", varieties: ["Scoparium"] },
+  { code: "37", species: "Rumpiato", varieties: ["Rumpiato sp"] },
+  { code: "38", species: "Prunus", varieties: ["Mariana M2624", "Garnem (GxN)", "Nemaguard", "Atlas", "GF677"] },
+  { code: "39", species: "Papaya Vasconcelle", varieties: ["Hembra LA2", "Hembra LB2"] },
+  { code: "40", species: "Puya", varieties: ["Puya Chilensis", "Puya maulina", "Puya alpestris"] },
+  { code: "41", species: "Boldo", varieties: ["Panguilemu 1", "Panguilemu 2", "Panguilemu 3", "Panguilemu 4", "GAP", "Cauquenes 1", "Panguipulli 2"] },
+  { code: "42", species: "Canelo", varieties: ["Pelluhue 1", "Pelluhue 3", "S. J. El Picazo", "Victoria 20", "Olmué 21", "Peralillo"] },
+  { code: "43", species: "Tuna", varieties: ["Lucy", "Carolina"] }
 ];
 
 const alerts = [
@@ -39,7 +89,11 @@ const lotProfiles = {
   "M4-L12": { location: "Invernadero 4 · Nave A", species: "Arándano", variety: "Legacy", phase: "Crecimiento activo", module: "M4" },
   "M5-L18": { location: "Invernadero 5 · Nave B", species: "Arándano", variety: "Duke", phase: "Crecimiento activo", module: "M5" },
   "M2-L07": { location: "Invernadero 2 · Mesón 7", species: "Avellano", variety: "Barcelona", phase: "Aclimatación", module: "M2" },
-  "M1-L03": { location: "Invernadero 1 · Mesón 3", species: "Cerezo", variety: "Regina", phase: "Endurecimiento", module: "M1" }
+  "M1-L03": { location: "Invernadero 1 · Mesón 3", species: "Cerezo", variety: "Regina", phase: "Endurecimiento", module: "M1" },
+  "M3-L08": { location: "Invernadero 3 · Mesón 8", species: "Frambueso", variety: "Meeker", phase: "Aclimatación", module: "M3" },
+  "M6-L09": { location: "Invernadero 6 · Mesón 9", species: "Frutilla", variety: "Albion", phase: "Crecimiento activo", module: "M6" },
+  "M7-L13": { location: "Invernadero 7 · Mesón 13", species: "Mora", variety: "Loch Ness", phase: "Endurecimiento", module: "M7" },
+  "M8-L41": { location: "Invernadero 8 · Mesón 41", species: "Boldo", variety: "Panguilemu 1", phase: "Crecimiento activo", module: "M8" }
 };
 
 const fieldbook = [
@@ -159,6 +213,33 @@ const autoRules = [
   }
 ];
 
+const normalReferenceProfile = {
+  label: "Condición normal SynergiaBIO",
+  imageCount: 8,
+  source: "Imágenes propias del 07/08/2026",
+  expected: [
+    "Follaje verde dominante con brotes juveniles verde claro o amarillo suave",
+    "Bandejas con crecimiento activo y variabilidad normal entre plantas",
+    "El daño se evalúa dentro de hojas y brotes; sustrato, bandejas, malla y pasillos se tratan como fondo",
+    "Ausencia de moho gris extendido, necrosis marginal masiva o marchitez generalizada"
+  ],
+  lots: ["02T107L03", "02T106L03", "02T055L02", "TH-1493", "Maverick", "TH-1241"]
+};
+
+const botrytisReferenceProfile = {
+  label: "Botrytis cinerea confirmada",
+  imageCount: 5,
+  source: "Imágenes propias del 07/08/2026",
+  expected: [
+    "Lesiones marrón claro o acuosas en hojas, tallos, brotes, flores o frutos",
+    "Polvillo o pelusa aterciopelada gris sobre el tejido afectado",
+    "Micelio visible blanquecino o gris invadiendo tejido dañado",
+    "Manchas necróticas canela con aspecto húmedo que se marchitan rápido",
+    "Lesiones alargadas café/grisáceas en tallos o brotes débiles"
+  ],
+  lots: ["Arándano", "Botrytis", "Lesión parda", "Necrosis", "Alta humedad"]
+};
+
 const programRows = [
   {
     phase: "Ingreso / aclimatación",
@@ -187,18 +268,54 @@ const programRows = [
 ];
 
 
-const nurseryAssets = [
-  { id: "M4", location: "Invernadero 4 - Nave A", crop: "Arándano Legacy", lots: 8, risk: 84, status: "Crítico", supervisor: "Biotecnóloga" },
-  { id: "M5", location: "Invernadero 5 - Nave B", crop: "Arándano Duke", lots: 6, risk: 71, status: "Alerta", supervisor: "Operario 1" },
-  { id: "M2", location: "Invernadero 2 - Mesón 7", crop: "Avellano Barcelona", lots: 5, risk: 62, status: "Monitoreo", supervisor: "Operario 2" },
-  { id: "M1", location: "Invernadero 1 - Mesón 3", crop: "Cerezo Regina", lots: 4, risk: 38, status: "Preventivo", supervisor: "Jefe de vivero" }
+const greenhouseCrops = [
+  "Cerezo Regina", "Avellano Barcelona", "Frambueso Meeker", "Arándano Legacy", "Arándano Duke", "Frutilla Albion", "Mora Loch Ness",
+  "Boldo Panguilemu 1", "Canelo Pelluhue 1", "Kiwi 1100903", "Maqui 34", "Prunus Mariana M2624", "Tuna Lucy", "Puya Chilensis"
+];
+
+const nurseryAssets = Array.from({ length: 14 }, (_, index) => {
+  const number = index + 1;
+  const risk = [38, 62, 54, 84, 71, 49, 57, 29, 34, 41, 46, 52, 33, 45][index];
+  const status = risk >= 75 ? "Crítico" : risk >= 55 ? "Monitoreo" : "Preventivo";
+  const supervisor = ["Jefe de vivero", "Operario 1", "Operario 2", "Biotecnóloga"][index % 4];
+  return {
+    id: `INV-${String(number).padStart(2, "0")}`,
+    location: `Invernadero ${number}`,
+    crop: greenhouseCrops[index],
+    benches: Array.from({ length: 9 }, (_, benchIndex) => ({
+      id: `I${String(number).padStart(2, "0")}-M${benchIndex + 1}`,
+      name: `Mesón ${benchIndex + 1}`,
+      lots: 2 + ((number + benchIndex) % 4),
+      plants: 0
+    })),
+    risk,
+    status,
+    supervisor
+  };
+});
+
+const movementHistory = [
+  {
+    date: "18/06/2026 10:20",
+    type: "Ingreso",
+    species: "Arándano",
+    variety: "Legacy",
+    quantity: 480,
+    from: "Producción inicial",
+    to: "Invernadero 4 · Mesón 3",
+    owner: "Jefe de vivero"
+  }
 ];
 
 const plantRegistry = [
   { lot: "M4-L12", species: "Arándano", variety: "Legacy", origin: "Micropropagación", phase: "Crecimiento activo", units: 12480, mortality: "8.7%", quality: "B" },
   { lot: "M5-L18", species: "Arándano", variety: "Duke", origin: "Micropropagación", phase: "Crecimiento activo", units: 10920, mortality: "6.4%", quality: "B" },
   { lot: "M2-L07", species: "Avellano", variety: "Barcelona", origin: "Ex vitro", phase: "Aclimatación", units: 6840, mortality: "4.1%", quality: "A" },
-  { lot: "M1-L03", species: "Cerezo", variety: "Regina", origin: "Ex vitro", phase: "Endurecimiento", units: 5120, mortality: "2.8%", quality: "A" }
+  { lot: "M1-L03", species: "Cerezo", variety: "Regina", origin: "Ex vitro", phase: "Endurecimiento", units: 5120, mortality: "2.8%", quality: "A" },
+  { lot: "M3-L08", species: "Frambueso", variety: "Meeker", origin: "Micropropagación", phase: "Aclimatación", units: 4380, mortality: "3.9%", quality: "A" },
+  { lot: "M6-L09", species: "Frutilla", variety: "Albion", origin: "Micropropagación", phase: "Crecimiento activo", units: 9320, mortality: "5.2%", quality: "B" },
+  { lot: "M7-L13", species: "Mora", variety: "Loch Ness", origin: "Ex vitro", phase: "Endurecimiento", units: 2740, mortality: "3.1%", quality: "A" },
+  { lot: "M8-L41", species: "Boldo", variety: "Panguilemu 1", origin: "Material nativo", phase: "Crecimiento activo", units: 1180, mortality: "1.6%", quality: "A" }
 ];
 
 const environmentReadings = [
@@ -262,6 +379,52 @@ function showToast(message) {
   setTimeout(() => toast.classList.remove("show"), 2800);
 }
 
+function populateCatalogControls() {
+  const speciesOptions = speciesCatalog
+    .map((item) => `<option value="${item.species}">${item.species} (${item.varieties.length})</option>`)
+    .join("");
+  safeSet("#speciesFilter", `<option value="all">Todas las especies</option>${speciesOptions}`);
+  safeSet("#movementSpecies", speciesOptions);
+
+  const lotOptions = Object.entries(lotProfiles)
+    .map(([lot, profile]) => `<option value="${lot}">${lot} · ${profile.species} ${profile.variety}</option>`)
+    .join("");
+  safeSet("#captureLot", lotOptions);
+  safeSet("#fieldbookFilter", `<option value="all">Todos los cuadernos</option>${lotOptions}`);
+
+  const greenhouseOptions = nurseryAssets
+    .map((item) => `<option value="${item.id}">${item.location}</option>`)
+    .join("");
+  safeSet("#movementFromGreenhouse", `<option value="external">Ingreso externo / propagación</option>${greenhouseOptions}`);
+  safeSet("#movementToGreenhouse", greenhouseOptions);
+  updateMovementVarieties();
+  updateMovementBenches();
+}
+
+function updateMovementVarieties() {
+  const selectedSpecies = $("#movementSpecies")?.value || speciesCatalog[0].species;
+  const catalogItem = speciesCatalog.find((item) => item.species === selectedSpecies) || speciesCatalog[0];
+  safeSet("#movementVariety", catalogItem.varieties
+    .map((variety) => `<option value="${variety}">${variety}</option>`)
+    .join(""));
+}
+
+function benchOptions(greenhouseId) {
+  const greenhouse = nurseryAssets.find((item) => item.id === greenhouseId) || nurseryAssets[0];
+  return greenhouse.benches
+    .map((bench) => `<option value="${bench.id}">${bench.name} · ${bench.id}</option>`)
+    .join("");
+}
+
+function updateMovementBenches() {
+  const fromGreenhouse = $("#movementFromGreenhouse")?.value;
+  const toGreenhouse = $("#movementToGreenhouse")?.value || nurseryAssets[0].id;
+  safeSet("#movementFromBench", fromGreenhouse === "external"
+    ? `<option value="external">Sin mesón origen</option>`
+    : benchOptions(fromGreenhouse));
+  safeSet("#movementToBench", benchOptions(toGreenhouse));
+}
+
 function renderModules(filter = "all") {
   const rows = modules
     .filter((item) => filter === "all" || item.species === filter)
@@ -279,7 +442,16 @@ function renderModules(filter = "all") {
     `)
     .join("");
 
-  $("#moduleList").innerHTML = rows;
+  $("#moduleList").innerHTML = rows || `
+    <article class="module-row">
+      <div>
+        <strong>Sin lotes activos para esta especie</strong>
+        <small>La especie está en el catálogo, pero aún no tiene lote productivo asignado.</small>
+      </div>
+      <div class="risk-bar" aria-label="Sin riesgo activo"><span class="risk-low" style="width:0%"></span></div>
+      <span class="badge">Catálogo</span>
+    </article>
+  `;
 }
 
 function renderAlerts() {
@@ -422,24 +594,157 @@ function renderNurseries() {
       <strong>${item.id}</strong>
       <span>${item.location}</span>
       <div class="risk-bar"><span class="${riskClass(item.risk)}" style="width:${item.risk}%"></span></div>
-      <small>${item.crop} - ${item.status}</small>
+      <small>${item.crop} - ${item.status} - ${item.benches.length} mesones</small>
     </article>
   `).join(""));
 
   safeSet("#nurseryTree", nurseryAssets.map((item) => `
     <article class="tree-node">
       <strong>${item.location}</strong>
-      <span>${item.crop} - ${item.lots} lotes - responsable: ${item.supervisor}</span>
+      <span>${item.crop} - ${item.benches.length} mesones - responsable: ${item.supervisor}</span>
+      <div class="bench-grid">
+        ${item.benches.map((bench) => `
+          <span class="bench-chip">${bench.name}<small>${bench.id} - ${bench.lots} lotes - ${bench.plants.toLocaleString("es-CL")} plantas</small></span>
+        `).join("")}
+      </div>
+    </article>
+  `).join(""));
+
+  safeSet("#movementHistory", movementHistory.map((movement) => `
+    <article class="movement-row">
+      <div>
+        <strong>${movement.type} · ${movement.species} ${movement.variety}</strong>
+        <span>${movement.date} · ${movement.owner}</span>
+      </div>
+      <span>${movement.from}</span>
+      <span>${movement.to}</span>
+      <span class="badge">${movement.quantity.toLocaleString("es-CL")} plantas</span>
     </article>
   `).join(""));
 }
 
+function findBench(greenhouseId, benchId) {
+  const greenhouse = nurseryAssets.find((item) => item.id === greenhouseId);
+  return greenhouse?.benches.find((bench) => bench.id === benchId);
+}
+
+function registerPlantMovement(event) {
+  event.preventDefault();
+  const type = $("#movementType").value;
+  const species = $("#movementSpecies").value;
+  const variety = $("#movementVariety").value;
+  const quantity = Math.max(0, Number($("#movementQuantity").value || 0));
+  const fromGreenhouse = $("#movementFromGreenhouse").value;
+  const fromBench = $("#movementFromBench").value;
+  const toGreenhouse = $("#movementToGreenhouse").value;
+  const toBench = $("#movementToBench").value;
+
+  if (!quantity) {
+    showToast("Ingresa una cantidad de plantas mayor a cero.");
+    return;
+  }
+
+  const originAsset = nurseryAssets.find((item) => item.id === fromGreenhouse);
+  const targetAsset = nurseryAssets.find((item) => item.id === toGreenhouse);
+  const originBench = findBench(fromGreenhouse, fromBench);
+  const targetBench = findBench(toGreenhouse, toBench);
+  if (!targetAsset || !targetBench) {
+    showToast("Selecciona un invernadero y mesón destino válido.");
+    return;
+  }
+
+  if (type === "Traslado" && originBench) {
+    originBench.plants = Math.max(0, originBench.plants - quantity);
+  }
+  targetBench.plants += quantity;
+
+  const movement = {
+    date: new Date().toLocaleString("es-CL", { dateStyle: "short", timeStyle: "short" }),
+    type,
+    species,
+    variety,
+    quantity,
+    from: originAsset && originBench ? `${originAsset.location} · ${originBench.name}` : "Ingreso externo / propagación",
+    to: `${targetAsset.location} · ${targetBench.name}`,
+    owner: "Registro operativo"
+  };
+
+  movementHistory.unshift(movement);
+  fieldbook.unshift({
+    date: movement.date,
+    lot: `${toGreenhouse}-${toBench}`,
+    location: movement.to,
+    species,
+    variety,
+    phase: type,
+    detail: `${type} de ${quantity.toLocaleString("es-CL")} plantas desde ${movement.from} hacia ${movement.to}.`,
+    owner: movement.owner
+  });
+
+  renderNurseries();
+  renderFieldbook();
+  showToast(`${type} registrado en vivero y cuaderno de campo.`);
+  event.target.reset();
+  updateMovementVarieties();
+  updateMovementBenches();
+}
+
 function renderPlants() {
-  const header = `<div class="data-row data-head"><span>Lote</span><span>Especie</span><span>Variedad</span><span>Fase</span><span>Plantas</span><span>Mortalidad</span><span>Calidad</span></div>`;
-  const rows = plantRegistry.map((row) => `
-    <div class="data-row"><strong>${row.lot}</strong><span>${row.species}</span><span>${row.variety}</span><span>${row.phase}</span><span>${row.units.toLocaleString("es-CL")}</span><span>${row.mortality}</span><span class="badge">${row.quality}</span></div>
-  `).join("");
-  safeSet("#plantsTable", header + rows);
+  const groupedRows = plantRegistry.reduce((acc, row) => {
+    if (!acc[row.species]) acc[row.species] = [];
+    acc[row.species].push(row);
+    return acc;
+  }, {});
+
+  safeSet("#plantsTable", Object.entries(groupedRows).map(([species, rows]) => `
+    <section class="fieldbook-group">
+      <header class="fieldbook-group-header">
+        <div>
+          <strong>${species}</strong>
+          <span>${rows.length} lotes activos en producción</span>
+        </div>
+        <span class="badge">Separado por especie</span>
+      </header>
+      <div class="data-table compact-table">
+        <div class="data-row data-head"><span>Lote</span><span>Variedad</span><span>Fase</span><span>Plantas</span><span>Mortalidad</span><span>Calidad</span></div>
+        ${rows.map((row) => `
+          <div class="data-row"><strong>${row.lot}</strong><span>${row.variety}</span><span>${row.phase}</span><span>${row.units.toLocaleString("es-CL")}</span><span>${row.mortality}</span><span class="badge">${row.quality}</span></div>
+        `).join("")}
+      </div>
+    </section>
+  `).join(""));
+
+  safeSet("#speciesCatalog", speciesCatalog.map((item) => `
+    <article class="catalog-species">
+      <header>
+        <strong>${item.code} · ${item.species}</strong>
+        <span class="badge">${item.varieties.length} variedades</span>
+      </header>
+      <p>${item.varieties.join(", ")}</p>
+    </article>
+  `).join(""));
+}
+
+function renderReferenceProfile(selector, profile) {
+  safeSet(selector, `
+    <div class="reference-card">
+      <div>
+        <strong>${profile.label}</strong>
+        <span>${profile.imageCount} imágenes base · ${profile.source}</span>
+      </div>
+      <div class="reference-tags">
+        ${profile.lots.map((lot) => `<span class="badge">${lot}</span>`).join("")}
+      </div>
+    </div>
+    <ul class="reference-list">
+      ${profile.expected.map((item) => `<li>${item}</li>`).join("")}
+    </ul>
+  `);
+}
+
+function renderImageReferences() {
+  renderReferenceProfile("#normalReference", normalReferenceProfile);
+  renderReferenceProfile("#botrytisReference", botrytisReferenceProfile);
 }
 
 function renderEnvironment() {
@@ -627,8 +932,12 @@ function extractImageSignals() {
   let gray = 0;
   let dark = 0;
   let purple = 0;
+  let redSpot = 0;
+  let grayMold = 0;
+  let darkFruit = 0;
   let edgeStress = 0;
   let total = 0;
+  let background = 0;
 
   for (let i = 0; i < data.length; i += 16) {
     const pixel = i / 4;
@@ -644,29 +953,158 @@ function extractImageSignals() {
     const isEdge = x < width * 0.18 || x > width * 0.82 || y < height * 0.18 || y > height * 0.82;
     const isBrown = r > 75 && g > 35 && g < 125 && b < 90 && r > b * 1.2;
     const isDark = brightness < 58;
+    const isRedSpot = r > 95 && g > 45 && g < 165 && b < 135 && r > g * 1.05 && r > b * 1.18;
+    const isHealthyLeaf = g > r * 1.08 && g > b * 1.08 && brightness > 45;
+    const isYoungLeaf = r > 115 && g > 105 && b < 115 && Math.abs(r - g) < 85 && brightness > 95;
+    const isPurpleLeafDamage = r > 85 && b > 70 && g < 90 && Math.abs(r - b) < 80 && brightness > 70;
+    const isGrayMoldLike = saturation < 0.24 && brightness > 92 && brightness < 190 && Math.abs(r - g) < 28 && Math.abs(g - b) < 34;
+    const isHealthyDarkFruit = b > r * 1.08 && b > g * 1.05 && brightness > 22 && brightness < 112 && saturation > 0.18;
+    const isFoliarDamage = (isBrown || isRedSpot || isPurpleLeafDamage)
+      && brightness > 78
+      && saturation > 0.16
+      && !isDark
+      && !(r < 115 && g < 95 && b < 80);
+    const isMoldOnPlant = isGrayMoldLike && (isHealthyLeaf || isYoungLeaf || isFoliarDamage);
 
-    if (g > r * 1.08 && g > b * 1.08 && brightness > 45) green += 1;
-    if (r > 115 && g > 105 && b < 115 && Math.abs(r - g) < 85) yellow += 1;
-    if (isBrown) brown += 1;
+    if (isHealthyLeaf) green += 1;
+    if (isYoungLeaf) yellow += 1;
+    if (isBrown && isFoliarDamage) brown += 1;
     if (saturation < 0.18 && brightness > 70 && brightness < 205) gray += 1;
     if (isDark) dark += 1;
-    if (r > 85 && b > 70 && g < 90 && Math.abs(r - b) < 80) purple += 1;
-    if (isEdge && (isBrown || isDark)) edgeStress += 1;
+    if (isPurpleLeafDamage) purple += 1;
+    if (isRedSpot && isFoliarDamage) redSpot += 1;
+    if (isMoldOnPlant) grayMold += 1;
+    if (isHealthyDarkFruit) darkFruit += 1;
+    if (isEdge && isFoliarDamage) edgeStress += 1;
+    if (!isHealthyLeaf && !isYoungLeaf && !isFoliarDamage && !isMoldOnPlant && !isHealthyDarkFruit) background += 1;
     total += 1;
   }
+
+  const foliarPixels = Math.max(1, green + yellow + brown + purple + redSpot + grayMold);
+  const plantPixels = Math.max(1, foliarPixels + darkFruit);
+  const plantRatio = plantPixels / total;
+  const foliarDamageRatio = (brown + purple + redSpot) / foliarPixels;
+  const grayMoldRatio = grayMold / foliarPixels;
+  const backgroundRatio = background / total;
+  const damageRatio = foliarDamageRatio + edgeStress / foliarPixels;
 
   return {
     greenRatio: green / total,
     yellowRatio: yellow / total,
-    brownRatio: brown / total,
+    brownRatio: brown / foliarPixels,
     grayRatio: gray / total,
     darkRatio: dark / total,
-    purpleRatio: purple / total,
-    edgeStress: edgeStress / total
+    purpleRatio: purple / foliarPixels,
+    redSpotRatio: redSpot / foliarPixels,
+    grayMoldRatio,
+    darkFruitRatio: darkFruit / plantPixels,
+    edgeStress: edgeStress / foliarPixels,
+    plantRatio,
+    foliarDamageRatio,
+    backgroundRatio,
+    damageRatio,
+    botrytisScore: foliarDamageRatio + (redSpot / foliarPixels) * 0.8 + grayMoldRatio * 1.7
   };
 }
 
+function matchesBotrytisReference(signal, environment) {
+  const visiblePlant = signal.plantRatio > 0.08 || signal.greenRatio > 0.08;
+  const waterSoakedBrown = signal.brownRatio > 0.2 && signal.foliarDamageRatio > 0.24;
+  const grayVelvetyMold = signal.grayMoldRatio > 0.055;
+  const redBrownSpeckles = signal.redSpotRatio > 0.12 && signal.brownRatio > 0.16;
+  const severeLesion = signal.foliarDamageRatio > 0.4 && (grayVelvetyMold || signal.brownRatio > 0.28);
+  const humidContext = environment === "humid";
+  const classicBotrytis = waterSoakedBrown && grayVelvetyMold;
+  const moderateHumidPattern = humidContext && waterSoakedBrown && redBrownSpeckles;
+  return visiblePlant && (classicBotrytis || severeLesion || moderateHumidPattern);
+}
+
+function matchesBotrytisSuspect(signal, environment) {
+  const visiblePlant = signal.plantRatio > 0.08 || signal.greenRatio > 0.08;
+  const visibleLeafDamage = signal.foliarDamageRatio >= 0.085;
+  const brownLesion = signal.brownRatio >= 0.075;
+  const redBrownPoints = signal.redSpotRatio >= 0.035;
+  const dryShootOrEdge = signal.edgeStress >= 0.025 || signal.purpleRatio >= 0.025;
+  const slightGraySignal = signal.grayMoldRatio >= 0.025;
+  const normalButDamaged = environment === "normal" && visibleLeafDamage && (brownLesion || redBrownPoints || dryShootOrEdge);
+  const humidCompatible = environment === "humid" && visibleLeafDamage && (brownLesion || redBrownPoints || slightGraySignal);
+  return visiblePlant && (normalButDamaged || humidCompatible);
+}
+
+function matchesNormalReference(signal, environment) {
+  const youngFlush = signal.yellowRatio >= 0.015 && signal.yellowRatio < 0.38;
+  const activeGreen = signal.greenRatio > 0.12;
+  const fruitingHealthy = signal.darkFruitRatio > 0.015 && signal.greenRatio > 0.16;
+  const lowDamage = signal.brownRatio < 0.18 && signal.purpleRatio < 0.06 && signal.redSpotRatio < 0.095;
+  const veryLowMold = signal.grayMoldRatio < 0.045;
+  const enoughPlant = signal.plantRatio > 0.08;
+  const normalSelected = environment === "normal" && signal.botrytisScore < 0.32;
+  const backgroundLikely = signal.backgroundRatio > 0.2 && signal.botrytisScore < 0.28;
+  return activeGreen && (youngFlush || fruitingHealthy) && lowDamage && veryLowMold && enoughPlant && (normalSelected || backgroundLikely || fruitingHealthy);
+}
+
+function diagnosisEvidence(diagnosis, signal, environment) {
+  if (diagnosis.id === "botrytis_reference" || diagnosis.id === "botrytis_suspect") {
+    return [
+      `Lesión marrón/acuosa en tejido vegetal ${(signal.brownRatio * 100).toFixed(1)}%`,
+      `Moho grisáceo o micelio compatible ${(signal.grayMoldRatio * 100).toFixed(1)}%`,
+      `Daño foliar total ${(signal.foliarDamageRatio * 100).toFixed(1)}%`,
+      diagnosis.id === "botrytis_suspect" ? "No se clasifica como sana porque hay daño visible en hojas/brotes" : environment === "humid" ? "Ambiente predisponente: alta humedad/baja ventilación" : "Patrón fuerte aun sin ambiente predisponente seleccionado"
+    ];
+  }
+  if (diagnosis.id === "normal_reference" || diagnosis.id === "healthy") {
+    return [
+      `Zona foliar priorizada ${(signal.plantRatio * 100).toFixed(1)}% de la imagen`,
+      `Daño dentro de hojas bajo ${(signal.foliarDamageRatio * 100).toFixed(1)}%`,
+      `Moho gris/micelio no dominante ${(signal.grayMoldRatio * 100).toFixed(1)}%`,
+      `Fruto oscuro compatible con arándano sano ${(signal.darkFruitRatio * 100).toFixed(1)}%`,
+      "Sustrato, bandejas, malla y entorno quedan clasificados como fondo"
+    ];
+  }
+  return [
+    `Verde ${(signal.greenRatio * 100).toFixed(1)}%`,
+    `Amarillo ${(signal.yellowRatio * 100).toFixed(1)}%`,
+    `Pardo/rojizo ${(signal.foliarDamageRatio * 100).toFixed(1)}%`
+  ];
+}
+
 function selectAutoDiagnosis(signal, environment) {
+  if (matchesBotrytisReference(signal, environment)) {
+    return {
+      id: "botrytis_reference",
+      label: "Botrytis cinerea probable",
+      nutrition: "Nutrición no es causa principal; patrón compatible con lesión fúngica",
+      plan: "Aislar bandeja, retirar tejido necrosado, reducir humedad/condensación, mejorar ventilación y validar fungicida autorizado SAG para Botrytis antes de aplicar."
+    };
+  }
+
+  if (matchesBotrytisSuspect(signal, environment)) {
+    return {
+      id: "botrytis_suspect",
+      label: "Botrytis cinerea posible",
+      nutrition: "Daño foliar visible; no corresponde clasificar como condición normal",
+      plan: "Marcar lote para revisión técnica, repetir captura cercana de hojas/tallos afectados, reducir humedad foliar y confirmar presencia de moho gris o micelio antes de definir fungicida."
+    };
+  }
+
+  if (environment === "normal" && matchesNormalReference(signal, environment)) {
+    return {
+      id: "normal_reference",
+      label: "Condición normal detectada",
+      nutrition: "Sin deficiencia nutricional dominante; brote joven compatible con crecimiento normal",
+      plan: "Mantener fertirriego y monitoreo preventivo. Registrar como imagen normal para calibrar el modelo y comparar futuras capturas del mismo lote."
+    };
+  }
+
+  if (matchesNormalReference(signal, environment)) {
+    return {
+      id: "normal_reference",
+      label: "Condición normal detectada",
+      nutrition: "Sin deficiencia nutricional dominante; brote joven compatible con crecimiento normal",
+      plan: "Mantener fertirriego y monitoreo preventivo. Registrar como imagen normal para calibrar el modelo y comparar futuras capturas del mismo lote."
+    };
+  }
+
   return autoRules.find((rule) => rule.condition(signal, environment)) || {
     id: "healthy",
     label: "Sin patógeno dominante detectado",
@@ -676,11 +1114,27 @@ function selectAutoDiagnosis(signal, environment) {
 }
 
 function calculateRisk(signal, environment, diagnosis) {
+  if (diagnosis.id === "normal_reference") {
+    const fruitConfidenceDiscount = signal.darkFruitRatio > 0.015 ? 4 : 0;
+    return Math.max(4, Math.min(20, 10 + Math.round(signal.foliarDamageRatio * 45) - fruitConfidenceDiscount));
+  }
+  if (diagnosis.id === "botrytis_reference") {
+    let score = 58 + Math.round(signal.botrytisScore * 170);
+    if (environment === "humid") score += 14;
+    return Math.max(62, Math.min(94, score));
+  }
+  if (diagnosis.id === "botrytis_suspect") {
+    let score = 42 + Math.round(signal.foliarDamageRatio * 180) + Math.round(signal.grayMoldRatio * 80);
+    if (environment === "humid") score += 10;
+    return Math.max(45, Math.min(72, score));
+  }
+
   let score = 28;
   score += Math.round(signal.yellowRatio * 80);
   score += Math.round(signal.brownRatio * 130);
   score += Math.round(signal.grayRatio * 120);
-  score += Math.round(signal.darkRatio * 45);
+  score += Math.round(signal.darkRatio * (signal.damageRatio > 0.1 ? 45 : 12));
+  if (environment === "normal") score -= 18;
   if (environment === "humid" && diagnosis.id === "botrytis") score += 18;
   if (environment === "wet_root" && diagnosis.id === "pythium") score += 22;
   if (environment === "warm_moist" && diagnosis.id === "fusarium") score += 16;
@@ -690,12 +1144,17 @@ function calculateRisk(signal, environment, diagnosis) {
 function buildManagementPlan(lotId, diagnosis, risk) {
   const lot = lotProfiles[lotId];
   const urgency = risk >= 75 ? "Alta" : risk >= 55 ? "Media" : "Baja";
-  const fertilizer = diagnosis.nutrition.includes("nitrógeno") ? "Fertirriego N fraccionado y control de CE." :
+  const fertilizer = diagnosis.id === "normal_reference" ? "Mantener programa nutricional vigente; no corregir sin análisis." :
+    diagnosis.nutrition.includes("nitrógeno") ? "Fertirriego N fraccionado y control de CE." :
     diagnosis.nutrition.includes("hierro") || diagnosis.nutrition.includes("manganeso") ? "Revisar pH; posible quelato de Fe/Mn tras confirmación." :
     diagnosis.nutrition.includes("potasio") ? "Corregir K solo con respaldo de análisis; revisar sales." :
     diagnosis.nutrition.includes("fósforo") ? "Verificar disponibilidad de P y temperatura radicular." :
     "Mantener fertirriego base balanceado según fase y análisis de sustrato.";
-  const sag = diagnosis.label.includes("probable") || diagnosis.label.includes("posible")
+  const sag = diagnosis.id === "normal_reference"
+    ? "No corresponde aplicación de plaguicida. Registrar como control sano de referencia."
+    : diagnosis.id === "botrytis_suspect"
+    ? "No aplicar automáticamente. Registrar sospecha, confirmar signos de moho gris/micelio y validar catálogo SAG antes de cualquier tratamiento."
+    : diagnosis.label.includes("probable") || diagnosis.label.includes("posible")
     ? "Consultar catálogo SAG vigente, etiqueta y HDS. Usar solo producto autorizado para cultivo/uso y bloquear aplicación hasta firma técnica."
     : "No generar aplicación de plaguicida sin umbral o confirmación técnica.";
 
@@ -709,12 +1168,13 @@ function buildManagementPlan(lotId, diagnosis, risk) {
   };
 }
 
-function writeAutoFieldbook(lotId, diagnosis, signal, risk, plan) {
-  const signalText = `verde ${(signal.greenRatio * 100).toFixed(0)}%, amarillo ${(signal.yellowRatio * 100).toFixed(0)}%, pardo ${(signal.brownRatio * 100).toFixed(0)}%, gris ${(signal.grayRatio * 100).toFixed(0)}%`;
+function writeAutoFieldbook(lotId, diagnosis, signal, risk, plan, environment = "") {
+  const signalText = `verde ${(signal.greenRatio * 100).toFixed(0)}%, amarillo ${(signal.yellowRatio * 100).toFixed(0)}%, lesión marrón ${(signal.brownRatio * 100).toFixed(0)}%, rojizo-pardo ${(signal.redSpotRatio * 100).toFixed(0)}%, moho/micelio gris ${(signal.grayMoldRatio * 100).toFixed(0)}%`;
+  const evidenceText = diagnosisEvidence(diagnosis, signal, environment).join("; ");
   fieldbook.unshift(createFieldbookEntry(
     lotId,
     new Date().toLocaleString("es-CL", { dateStyle: "short", timeStyle: "short" }),
-    `Detección automática: ${diagnosis.nutrition}; posible patógeno: ${diagnosis.label}; riesgo ${risk}%. Señales imagen: ${signalText}. Plan: ${plan.fertilizer} ${plan.pesticide} SAG: ${plan.sag}`,
+    `Detección automática: ${diagnosis.nutrition}; resultado fitosanitario: ${diagnosis.label}; riesgo ${risk}%. Señales imagen: ${signalText}. Características: ${evidenceText}. Plan: ${plan.fertilizer} ${plan.pesticide} SAG: ${plan.sag}`,
     "PhytoAI automático"
   ));
   renderFieldbook();
@@ -752,8 +1212,11 @@ function analyzeImage() {
   const diagnosis = selectAutoDiagnosis(signal, environment);
   const risk = calculateRisk(signal, environment, diagnosis);
   const plan = buildManagementPlan(lotId, diagnosis, risk);
-  addAutoAlert(lotId, diagnosis, risk, plan);
-  writeAutoFieldbook(lotId, diagnosis, signal, risk, plan);
+  const evidence = diagnosisEvidence(diagnosis, signal, environment);
+  if (diagnosis.id !== "normal_reference" && diagnosis.id !== "healthy") {
+    addAutoAlert(lotId, diagnosis, risk, plan);
+  }
+  writeAutoFieldbook(lotId, diagnosis, signal, risk, plan, environment);
 
   $("#recommendation").innerHTML = `
     <span class="badge">Riesgo ${risk}% · ${plan.urgency}</span>
@@ -774,11 +1237,15 @@ function analyzeImage() {
         <strong>Programa automático</strong>
         <span>${plan.fertilizer} ${plan.pesticide}</span>
       </article>
+      <article class="diagnosis-card evidence-card">
+        <strong>Características detectadas</strong>
+        <span>${evidence.join(" · ")}</span>
+      </article>
     </div>
     <p><strong>SAG:</strong> ${plan.sag}</p>
-    <p><strong>Cuaderno:</strong> registro automático creado y alerta bloqueada hasta firma técnica.</p>
+    <p><strong>Cuaderno:</strong> registro automático creado${diagnosis.id === "normal_reference" || diagnosis.id === "healthy" ? " como control sano, sin alerta de aplicación." : " y alerta bloqueada hasta firma técnica."}</p>
   `;
-  showToast("Plan automático generado y escrito en el cuaderno de campo.");
+  showToast(diagnosis.id === "normal_reference" ? "Imagen normal registrada en el cuaderno de campo." : "Plan automático generado y escrito en el cuaderno de campo.");
 }
 
 function runDiagnosis(event) {
@@ -865,6 +1332,10 @@ $("#newAlertBtn").addEventListener("click", () => setView("capture"));
 $("#analyzeBtn").addEventListener("click", analyzeImage);
 $("#exportBtn").addEventListener("click", exportCsv);
 $("#diagnosisForm").addEventListener("submit", runDiagnosis);
+$("#movementForm").addEventListener("submit", registerPlantMovement);
+$("#movementSpecies").addEventListener("change", updateMovementVarieties);
+$("#movementFromGreenhouse").addEventListener("change", updateMovementBenches);
+$("#movementToGreenhouse").addEventListener("change", updateMovementBenches);
 $("#uploadBtn").addEventListener("click", () => $("#imageInput").click());
 $("#imageInput").addEventListener("change", (event) => loadImageFile(event.target.files?.[0]));
 $("#cameraBtn").addEventListener("click", startCamera);
@@ -891,11 +1362,13 @@ $("#rejectBtn").addEventListener("click", () => {
   showToast("Alerta rechazada. Se solicitará nueva captura o inspección visual.");
 });
 
+populateCatalogControls();
 renderModules();
 renderAlerts();
 renderApprovalOptions();
 renderFieldbook();
 renderProgram();
+renderImageReferences();
 renderSaasModules();
 
 
