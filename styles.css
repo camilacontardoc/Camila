@@ -455,6 +455,35 @@ input {
   margin-top: 4px;
 }
 
+.fieldbook-dimensions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  background: #fbfdf9;
+}
+
+.fieldbook-dimensions span {
+  min-height: 54px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--muted);
+  display: grid;
+  align-content: center;
+  gap: 3px;
+  padding: 9px 10px;
+}
+
+.fieldbook-dimensions strong {
+  display: block;
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
 .fieldbook-group-rows {
   padding: 12px;
 }
@@ -931,6 +960,7 @@ body.compact .metric {
 
   .module-row,
   .field-entry,
+  .fieldbook-dimensions,
   .diagnosis-grid,
   .movement-form,
   .movement-row,
@@ -960,6 +990,8 @@ body.dark .module-row,
 body.dark .flow div,
 body.dark .field-entry,
 body.dark .fieldbook-group,
+body.dark .fieldbook-dimensions,
+body.dark .fieldbook-dimensions span,
 body.dark .catalog-species,
 body.dark .diagnosis-card,
 body.dark .sag-grid article,
