@@ -86,14 +86,14 @@ const alerts = [
 ];
 
 const lotProfiles = {
-  "M4-L12": { location: "Invernadero 4 · Nave A", species: "Arándano", variety: "Legacy", phase: "Crecimiento activo", module: "M4" },
-  "M5-L18": { location: "Invernadero 5 · Nave B", species: "Arándano", variety: "Duke", phase: "Crecimiento activo", module: "M5" },
+  "M4-L12": { location: "Invernadero 4 · Mesón 4", species: "Arándano", variety: "Legacy", phase: "Crecimiento activo", module: "M4" },
+  "M5-L18": { location: "Invernadero 5 · Mesón 5", species: "Arándano", variety: "Duke", phase: "Crecimiento activo", module: "M5" },
   "M2-L07": { location: "Invernadero 2 · Mesón 7", species: "Avellano", variety: "Barcelona", phase: "Aclimatación", module: "M2" },
   "M1-L03": { location: "Invernadero 1 · Mesón 3", species: "Cerezo", variety: "Regina", phase: "Endurecimiento", module: "M1" },
   "M3-L08": { location: "Invernadero 3 · Mesón 8", species: "Frambueso", variety: "Meeker", phase: "Aclimatación", module: "M3" },
   "M6-L09": { location: "Invernadero 6 · Mesón 9", species: "Frutilla", variety: "Albion", phase: "Crecimiento activo", module: "M6" },
-  "M7-L13": { location: "Invernadero 7 · Mesón 13", species: "Mora", variety: "Loch Ness", phase: "Endurecimiento", module: "M7" },
-  "M8-L41": { location: "Invernadero 8 · Mesón 41", species: "Boldo", variety: "Panguilemu 1", phase: "Crecimiento activo", module: "M8" }
+  "M7-L13": { location: "Invernadero 7 · Mesón 7", species: "Mora", variety: "Loch Ness", phase: "Endurecimiento", module: "M7" },
+  "M8-L41": { location: "Invernadero 8 · Mesón 8", species: "Boldo", variety: "Panguilemu 1", phase: "Crecimiento activo", module: "M8" }
 };
 
 const fieldbook = [
@@ -390,7 +390,7 @@ function populateCatalogControls() {
     .map(([lot, profile]) => `<option value="${lot}">${lot} · ${profile.species} ${profile.variety}</option>`)
     .join("");
   safeSet("#captureLot", lotOptions);
-  safeSet("#fieldbookFilter", `<option value="all">Todos los cuadernos</option>${lotOptions}`);
+  populateFieldbookFilter();
 
   const greenhouseOptions = nurseryAssets
     .map((item) => `<option value="${item.id}">${item.location}</option>`)
@@ -399,6 +399,71 @@ function populateCatalogControls() {
   safeSet("#movementToGreenhouse", greenhouseOptions);
   updateMovementVarieties();
   updateMovementBenches();
+}
+
+function splitLocation(location = "") {
+  const greenhouseMatch = String(location).match(/Invernadero\s+\d+/i);
+  const benchMatch = String(location).match(/Mes[oó]n\s+\d+/i);
+  return {
+    greenhouse: greenhouseMatch ? greenhouseMatch[0].replace("Invernadero", "Invernadero") : "Invernadero por asignar",
+    bench: benchMatch ? benchMatch[0].replace("Meson", "Mesón") : "Mesón por asignar"
+  };
+}
+
+function fieldbookKey(row) {
+  return [
+    row.greenhouse || splitLocation(row.location).greenhouse,
+    row.bench || splitLocation(row.location).bench,
+    row.species,
+    row.variety
+  ].join("__");
+}
+
+function fieldbookLabelFromKey(key) {
+  const [greenhouse, bench, species, variety] = key.split("__");
+  return `${greenhouse} · ${bench} · ${species} · ${variety}`;
+}
+
+function splitCropName(crop = "") {
+  const catalogMatch = speciesCatalog
+    .filter((item) => crop.startsWith(`${item.species} `) || crop === item.species)
+    .sort((a, b) => b.species.length - a.species.length)[0];
+  if (!catalogMatch) {
+    const [species = "Especie por asignar", ...rest] = String(crop).split(" ");
+    return { species, variety: rest.join(" ") || "Variedad por asignar" };
+  }
+  return {
+    species: catalogMatch.species,
+    variety: crop.replace(catalogMatch.species, "").trim() || catalogMatch.varieties[0] || "Variedad por asignar"
+  };
+}
+
+function baseFieldbookGroups() {
+  return nurseryAssets.flatMap((greenhouse) => {
+    const crop = splitCropName(greenhouse.crop);
+    return greenhouse.benches.map((bench) => ({
+      lot: `${greenhouse.id}-${bench.id}`,
+      location: `${greenhouse.location} · ${bench.name}`,
+      greenhouse: greenhouse.location,
+      bench: bench.name,
+      species: crop.species,
+      variety: crop.variety,
+      phase: "Sin plantas designadas",
+      rows: []
+    }));
+  });
+}
+
+function populateFieldbookFilter(selected = $("#fieldbookFilter")?.value || "all") {
+  const keys = [...new Set([...baseFieldbookGroups().map(fieldbookKey), ...fieldbook.map(fieldbookKey)])]
+    .sort((a, b) => fieldbookLabelFromKey(a).localeCompare(fieldbookLabelFromKey(b), "es", { numeric: true }));
+  const options = keys
+    .map((key) => `<option value="${key}">${fieldbookLabelFromKey(key)}</option>`)
+    .join("");
+  safeSet("#fieldbookFilter", `<option value="all">Todos los cuadernos</option>${options}`);
+  if ($("#fieldbookFilter") && (selected === "all" || keys.includes(selected))) {
+    $("#fieldbookFilter").value = selected;
+  }
 }
 
 function updateMovementVarieties() {
@@ -498,10 +563,13 @@ function normalizeLotId(value) {
 function createFieldbookEntry(lotId, date, detail, owner) {
   const normalizedLot = normalizeLotId(lotId);
   const profile = getLotProfile(normalizedLot);
+  const locationParts = splitLocation(profile.location);
   return {
     date,
     lot: normalizedLot,
     location: profile.location,
+    greenhouse: locationParts.greenhouse,
+    bench: locationParts.bench,
     species: profile.species,
     variety: profile.variety,
     phase: profile.phase,
@@ -510,53 +578,81 @@ function createFieldbookEntry(lotId, date, detail, owner) {
   };
 }
 
-function fieldbookKey(row) {
-  return `${row.lot}__${row.location}__${row.species}__${row.variety}`;
-}
-
 function renderFieldbook(filter = $("#fieldbookFilter")?.value || "all") {
-  const visibleRows = filter === "all" ? fieldbook : fieldbook.filter((row) => row.lot === filter);
-  const groups = visibleRows.reduce((acc, row) => {
+  populateFieldbookFilter(filter);
+  const baseGroups = baseFieldbookGroups();
+  const groups = baseGroups.reduce((acc, group) => {
+    const key = fieldbookKey(group);
+    acc[key] = { ...group, rows: [] };
+    return acc;
+  }, {});
+
+  fieldbook.forEach((row) => {
     const key = fieldbookKey(row);
-    if (!acc[key]) {
-      acc[key] = {
+    const locationParts = splitLocation(row.location);
+    if (!groups[key]) {
+      groups[key] = {
         lot: row.lot,
         location: row.location,
+        greenhouse: row.greenhouse || locationParts.greenhouse,
+        bench: row.bench || locationParts.bench,
         species: row.species,
         variety: row.variety,
         phase: row.phase,
         rows: []
       };
     }
-    acc[key].rows.push(row);
-    return acc;
-  }, {});
+    groups[key].rows.push(row);
+  });
+
+  const allGroups = Object.values(groups)
+    .sort((a, b) => fieldbookLabelFromKey(fieldbookKey(a)).localeCompare(fieldbookLabelFromKey(fieldbookKey(b)), "es", { numeric: true }));
+  const visibleGroups = filter === "all" ? allGroups : allGroups.filter((group) => fieldbookKey(group) === filter);
+  const visibleRows = visibleGroups.flatMap((group) => group.rows);
 
   $("#fieldbookSummary").innerHTML = `
-    <span class="badge">${Object.keys(groups).length} cuadernos</span>
+    <span class="badge">${visibleGroups.length} cuadernos</span>
     <span class="badge">${visibleRows.length} registros</span>
+    <span class="badge">${visibleGroups.filter((group) => group.rows.length === 0).length} sin plantas</span>
   `;
 
-  $("#fieldbookRows").innerHTML = Object.values(groups).map((group) => `
+  $("#fieldbookRows").innerHTML = visibleGroups.map((group) => `
     <section class="fieldbook-group">
       <header class="fieldbook-group-header">
         <div>
-          <strong>${group.lot} · ${group.location}</strong>
+          <strong>${group.greenhouse} · ${group.bench}</strong>
           <span>${group.species} · ${group.variety} · ${group.phase}</span>
         </div>
-        <span class="badge">${group.rows.length} registros</span>
+        <span class="badge">${group.rows.length ? `${group.rows.length} registros` : "Sin plantas designadas"}</span>
       </header>
+      <div class="fieldbook-dimensions">
+        <span><strong>Invernadero</strong>${group.greenhouse}</span>
+        <span><strong>Mesón</strong>${group.bench}</span>
+        <span><strong>Especie</strong>${group.species}</span>
+        <span><strong>Variedad</strong>${group.variety}</span>
+      </div>
       <div class="fieldbook-group-rows">
-        ${group.rows.map((row) => `
+        ${group.rows.length ? group.rows.map((row) => `
           <article class="field-entry">
             <small>${row.date}</small>
             <div>
               <strong>${row.owner}</strong>
               <span>${row.detail}</span>
+              <small>${row.lot} · ${row.location}</small>
             </div>
             <span class="badge">${row.species} ${row.variety}</span>
           </article>
-        `).join("")}
+        `).join("") : `
+          <article class="field-entry empty-entry">
+            <small>Sin registros</small>
+            <div>
+              <strong>Mesón disponible</strong>
+              <span>No hay plantas designadas ni movimientos registrados para este cuaderno.</span>
+              <small>${group.location}</small>
+            </div>
+            <span class="badge">Vacío</span>
+          </article>
+        `}
       </div>
     </section>
   `).join("") || `
@@ -674,6 +770,8 @@ function registerPlantMovement(event) {
     date: movement.date,
     lot: `${toGreenhouse}-${toBench}`,
     location: movement.to,
+    greenhouse: targetAsset.location,
+    bench: targetBench.name,
     species,
     variety,
     phase: type,
