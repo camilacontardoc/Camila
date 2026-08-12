@@ -340,10 +340,68 @@ const recommendationRows = [
 ];
 
 const inventoryRows = [
-  { item: "Fungicida anti-Botrytis", type: "Serie SAG 2000", existencias: "12 L", minimo: "8 L", status: "Disponible", regla: "Requiere firma" },
-  { item: "Biocontrol radicular", type: "Microbiano", existencias: "3 kg", minimo: "5 kg", status: "Existencias críticas", regla: "Compra sugerida" },
-  { item: "Quelato Fe", type: "Fertilizante", existencias: "18 kg", minimo: "10 kg", status: "Disponible", regla: "Aplicación con análisis" },
-  { item: "Sanitizante herramientas", type: "Higiene", existencias: "28 L", minimo: "12 L", status: "Disponible", regla: "Uso permitido" }
+  { item: "ACTARA 25 WG", type: "Insecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y cultivo antes de aplicar" },
+  { item: "AMISTAR TOP", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta, dosis y periodo de reingreso" },
+  { item: "AMONIO CUATERNARIO", type: "Sanitizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No plaguicida agrícola", regla: "Uso en higiene; no aplicar sobre plantas sin etiqueta" },
+  { item: "AZOTE PLUS", type: "Fertilizante/Bioestimulante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Usar con análisis nutricional" },
+  { item: "BANDA CONTROL INSECTOS AMARILLA 30X100 CNBM", type: "Monitoreo", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No plaguicida agrícola", regla: "Monitoreo preventivo" },
+  { item: "BANDA CONTROL INSECTOS AZUL 30X100 CNBM", type: "Monitoreo", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No plaguicida agrícola", regla: "Monitoreo preventivo" },
+  { item: "BAYFOLAN", type: "Fertilizante foliar", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar solo con diagnóstico nutricional" },
+  { item: "BELLIS", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y firma técnica" },
+  { item: "BENOMYL", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Revisión manual SAG", regla: "No liberar sin confirmar registro vigente" },
+  { item: "BIOBACTER", type: "Biológico", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar uso registrado según etiqueta" },
+  { item: "BIOCAP", type: "Biológico/Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Revisión manual SAG", regla: "Coincidencia descartada con BIOCAPSAICIN; confirmar producto exacto" },
+  { item: "BIOLIFE FOLIAR", type: "Bioestimulante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con registro de lote" },
+  { item: "BIOLIFE RHIZO", type: "Biológico radicular", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con registro de lote" },
+  { item: "BRAVO", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y cultivo autorizado" },
+  { item: "COMET", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y cultivo autorizado" },
+  { item: "CRATER MX 70% WP", type: "Plaguicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta antes de aplicar" },
+  { item: "CYPERKILL", type: "Insecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y EPP" },
+  { item: "DASH", type: "Coadyuvante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Usar solo asociado a etiqueta autorizada" },
+  { item: "DIAZOL 50 EW X 10 LTS", type: "Insecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y restricciones vigentes" },
+  { item: "ENGEO", type: "Insecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta, cultivo y carencia" },
+  { item: "EXIREL", type: "Insecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta, cultivo y carencia" },
+  { item: "FADEX H+", type: "Corrector pH/Coadyuvante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar ajuste de agua" },
+  { item: "FERTUM NPK 20-20-20", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "FERTUM BOOSTER", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "FERTUM MAX HIERRO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "FERTUM ROOT", type: "Fertilizante radicular", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "FETRILON COMBI", type: "Fertilizante micronutrientes", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "FOSFATO MONOAMONICO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "FRONTAL 425 SC", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y cultivo autorizado" },
+  { item: "GRANDEVO WG X 2KG", type: "Bioinsecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y condiciones de uso" },
+  { item: "INDAR", type: "Fungicida", existencias: "En stock", minimo: "0", status: "Bloqueado", sagStatus: "Cancelado SAG", regla: "Alerta: coincidencia con INDAR FLO 30 FS en listado SAG cancelados; no aplicar sin revisión técnica" },
+  { item: "INVICTO", type: "Plaguicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta antes de aplicar" },
+  { item: "KIESEL 44 ORGANIC", type: "Fertilizante/Bioestimulante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "MENNO FLORADES", type: "Sanitizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No plaguicida agrícola", regla: "Uso de higiene y desinfección" },
+  { item: "METALAXIL", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y cultivo autorizado" },
+  { item: "MEZCLA 17-20-20", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "MICROLIFE", type: "Biológico", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar lote tratado" },
+  { item: "MURALLA DELTA", type: "Insecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta, cultivo y EPP" },
+  { item: "NA-PRO", type: "Bioestimulante/Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Coincidencia textual no exacta; no bloquear como plaguicida" },
+  { item: "NITRATO DE AMONIO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "NITRATO DE CALCIO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "NITRATO DE MAGNESIO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "NITRATO DE POTACIO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "NOVATEC SOLUB 14-48", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "OLEATBIO PLUS GW", type: "Biológico", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta si se usa como plaguicida" },
+  { item: "PERMETRINA 50 CE", type: "Insecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta, cultivo y EPP" },
+  { item: "PROFULVIC-45", type: "Bioestimulante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "PUZZLE SC", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y cultivo autorizado" },
+  { item: "RAID AEROSOL TODO INSECTO 360 CC", type: "Insecticida doméstico", existencias: "En stock", minimo: "Revisar", status: "Bloqueado para plantas", sagStatus: "No plaguicida agrícola", regla: "No usar en vivero productivo; solo control doméstico autorizado" },
+  { item: "RANGO", type: "Plaguicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar producto exacto antes de aplicar" },
+  { item: "REGLONE", type: "Herbicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Revisión manual SAG", regla: "No liberar sin confirmar registro vigente y restricciones" },
+  { item: "RUGBY", type: "Nematicida/Insecticida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y restricciones" },
+  { item: "SALITRE POTASICO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "SELECRON", type: "Insecticida/Acaricida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Revisión manual SAG", regla: "No liberar sin confirmar registro vigente y restricciones" },
+  { item: "SHIRLAN 500 SC", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y cultivo autorizado" },
+  { item: "SULFATO DE AMONIO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Registrar dosis en cuaderno" },
+  { item: "SWITCH", type: "Fungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y cultivo autorizado" },
+  { item: "TIMOREX GOLD", type: "Biofungicida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta y condiciones de uso" },
+  { item: "ULTRASOL CRECIMIENTO", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "ULTRASOL INICIAL", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "Aplicar con análisis nutricional" },
+  { item: "UREA", type: "Fertilizante", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "No aplica SAG plaguicidas", regla: "No corresponde a urea fenilmercúrica prohibida" },
+  { item: "VERTIMEC", type: "Insecticida/Acaricida", existencias: "En stock", minimo: "Revisar", status: "Disponible", sagStatus: "Por verificar SAG", regla: "Validar etiqueta, cultivo y carencia" }
 ];
 
 const reportRows = [
@@ -535,6 +593,61 @@ function renderAlerts() {
     </div>
   `).join("");
   $("#alertsTable").innerHTML = header + rows;
+}
+
+function isSagDiscontinued(row) {
+  return ["Cancelado SAG", "Prohibido SAG", "Descontinuado SAG"].includes(row.sagStatus);
+}
+
+function syncInventorySagAlerts(source = "Carga de inventario") {
+  const activeInventoryAlertIds = new Set();
+  inventoryRows.forEach((row, index) => {
+    if (!isSagDiscontinued(row)) return;
+    const id = `INV-SAG-${String(index + 1).padStart(2, "0")}`;
+    activeInventoryAlertIds.add(id);
+    const existing = alerts.find((alert) => alert.id === id);
+    const alertPayload = {
+      id,
+      module: "Inventario SAG",
+      species: row.item,
+      pathogen: row.sagStatus,
+      confidence: "Catálogo SAG",
+      status: "Bloqueada",
+      action: `Bloquear uso de ${row.item}. ${row.regla}. Origen: ${source}.`
+    };
+    if (existing) Object.assign(existing, alertPayload);
+    else alerts.unshift(alertPayload);
+  });
+
+  for (let index = alerts.length - 1; index >= 0; index -= 1) {
+    const alert = alerts[index];
+    if (alert.id?.startsWith("INV-SAG-") && !activeInventoryAlertIds.has(alert.id)) {
+      alerts.splice(index, 1);
+    }
+  }
+}
+
+function renderInventoryAlerts() {
+  const discontinued = inventoryRows.filter(isSagDiscontinued);
+  if (!discontinued.length) {
+    safeSet("#inventoryAlerts", `
+      <div class="inventory-alert ok">
+        <strong>Sin productos descontinuados SAG en stock</strong>
+        <span>Las alertas automáticas se activarán solo ante productos cancelados, prohibidos o descontinuados por catálogo SAG.</span>
+      </div>
+    `);
+    return;
+  }
+
+  safeSet("#inventoryAlerts", `
+    <div class="inventory-alert danger">
+      <div>
+        <strong>${discontinued.length} producto SAG bloqueado</strong>
+        <span>Alerta automática generada solo para productos descontinuados/cancelados por catálogo SAG. Requiere retiro preventivo o firma técnica antes de cualquier decisión.</span>
+      </div>
+      ${discontinued.map((row) => `<span class="badge danger-badge">${row.item} · ${row.sagStatus}</span>`).join("")}
+    </div>
+  `);
 }
 
 function renderApprovalOptions() {
@@ -879,9 +992,17 @@ function renderRecommender() {
 }
 
 function renderInventory() {
-  const header = `<div class="data-row data-head"><span>Insumo</span><span>Tipo</span><span>Existencias</span><span>Mínimo</span><span>Estado</span><span>Regla</span></div>`;
+  renderInventoryAlerts();
+  const header = `<div class="data-row data-head inventory-row"><span>Insumo</span><span>Tipo</span><span>Existencias</span><span>Estado bodega</span><span>Estado SAG</span><span>Regla</span></div>`;
   const rows = inventoryRows.map((row) => `
-    <div class="data-row"><strong>${row.item}</strong><span>${row.type}</span><span>${row.existencias}</span><span>${row.minimo}</span><span class="badge">${row.status}</span><span>${row.regla}</span></div>
+    <div class="data-row inventory-row">
+      <strong>${row.item}</strong>
+      <span>${row.type}</span>
+      <span>${row.existencias}<br><small>Mínimo: ${row.minimo}</small></span>
+      <span class="badge ${row.status.includes("Bloqueado") ? "warning-badge" : ""}">${row.status}</span>
+      <span class="badge ${isSagDiscontinued(row) ? "danger-badge" : row.sagStatus.includes("Revisión") || row.sagStatus.includes("Por verificar") ? "warning-badge" : ""}">${row.sagStatus}</span>
+      <span>${row.regla}</span>
+    </div>
   `).join("");
   safeSet("#inventoryTable", header + rows);
 }
@@ -1461,6 +1582,7 @@ $("#rejectBtn").addEventListener("click", () => {
 });
 
 populateCatalogControls();
+syncInventorySagAlerts("Barbara.xlsx");
 renderModules();
 renderAlerts();
 renderApprovalOptions();

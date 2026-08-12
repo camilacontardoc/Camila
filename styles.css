@@ -395,6 +395,53 @@ input {
   font-weight: 800;
 }
 
+.badge.danger-badge {
+  background: #fff0f0;
+  color: var(--danger);
+}
+
+.badge.warning-badge {
+  background: #fff7dd;
+  color: #8a5b00;
+}
+
+.inventory-alerts {
+  margin: 18px 0;
+}
+
+.inventory-alert {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.inventory-alert strong,
+.inventory-alert span {
+  display: block;
+}
+
+.inventory-alert div {
+  flex: 1 1 420px;
+}
+
+.inventory-alert.danger {
+  border-color: #e6b8b8;
+  background: #fff8f6;
+}
+
+.inventory-alert.danger strong {
+  color: var(--danger);
+}
+
+.inventory-alert.ok strong {
+  color: var(--accent);
+}
+
 .flow div,
 .pilot-steps div,
 .pitch-timeline article,
@@ -1201,7 +1248,7 @@ body.dark .danger-action { background: #301b1b; }
 }
 
 #inventoryTable .data-row {
-  grid-template-columns: 1.2fr 1fr .7fr .7fr .9fr 1fr;
+  grid-template-columns: 1.4fr .9fr .7fr .8fr .95fr 1.4fr;
 }
 
 .data-row:first-child { border-top: 0; }
