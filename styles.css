@@ -726,6 +726,10 @@ input {
   color: var(--muted);
 }
 
+.evidence-card {
+  grid-column: 1 / -1;
+}
+
 .source-box {
   margin-top: 14px;
   border-left: 4px solid var(--accent);
@@ -734,8 +738,40 @@ input {
   border-radius: 8px;
 }
 
+.danger-reference {
+  border-left-color: var(--danger);
+  background: #fff4f1;
+}
+
 .source-box p {
   margin: 6px 0 0;
+  color: var(--muted);
+}
+
+.reference-card {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.reference-card strong,
+.reference-card span {
+  display: block;
+}
+
+.reference-card span {
+  color: var(--muted);
+}
+
+.reference-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.reference-list {
+  margin: 10px 0 0;
+  padding-left: 18px;
   color: var(--muted);
 }
 
@@ -846,6 +882,7 @@ body.compact .metric {
 
   .metrics-grid,
   .work-grid,
+  .catalog-grid,
   .capture-layout,
   .split,
   .diagnosis-layout,
@@ -895,6 +932,8 @@ body.compact .metric {
   .module-row,
   .field-entry,
   .diagnosis-grid,
+  .movement-form,
+  .movement-row,
   .program-row {
     grid-template-columns: 1fr;
   }
@@ -921,6 +960,7 @@ body.dark .module-row,
 body.dark .flow div,
 body.dark .field-entry,
 body.dark .fieldbook-group,
+body.dark .catalog-species,
 body.dark .diagnosis-card,
 body.dark .sag-grid article,
 body.dark .program-row,
@@ -931,6 +971,7 @@ body.dark .factor-card,
 body.dark .report-card,
 body.dark .security-card,
 body.dark .map-card,
+body.dark .movement-row,
 body.dark .data-row {
   background: #1a241b;
   color: var(--ink);
@@ -1002,6 +1043,71 @@ body.dark .danger-action { background: #301b1b; }
   margin: 12px 0 8px;
 }
 
+.bench-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.bench-chip {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  background: var(--surface-2);
+  padding: 8px;
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.bench-chip small {
+  display: block;
+  margin-top: 3px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.movement-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.movement-form label {
+  display: grid;
+  gap: 7px;
+  font-weight: 800;
+}
+
+.movement-form .primary-action {
+  align-self: end;
+}
+
+.movement-history {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.movement-row {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdf9;
+  padding: 12px;
+}
+
+.movement-row strong,
+.movement-row span {
+  display: block;
+}
+
+.movement-row span {
+  color: var(--muted);
+}
+
 .risk-high-card { border-left: 5px solid var(--danger); }
 .risk-medium-card { border-left: 5px solid var(--warning); }
 .risk-low-card { border-left: 5px solid var(--success); }
@@ -1010,6 +1116,41 @@ body.dark .danger-action { background: #301b1b; }
 .recommendation-table {
   display: grid;
   overflow-x: auto;
+}
+
+.compact-table .data-row {
+  min-width: 680px;
+  grid-template-columns: 1fr 1.3fr 1fr .9fr .9fr 80px;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  max-height: 620px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.catalog-species {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdf9;
+  padding: 14px;
+}
+
+.catalog-species header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: start;
+  margin-bottom: 8px;
+}
+
+.catalog-species p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
 }
 
 .data-row {
