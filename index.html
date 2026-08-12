@@ -140,20 +140,78 @@
       <section class="view" id="nurseries">
         <div class="section-grid">
           <section class="panel">
-            <div class="panel-header"><div><p class="eyebrow">Gestión de viveros</p><h2>Mapa operacional por módulo</h2></div><span class="badge">4 módulos activos</span></div>
+            <div class="panel-header"><div><p class="eyebrow">Gestión de viveros</p><h2>Mapa operacional por invernadero</h2></div><span class="badge">14 invernaderos</span></div>
             <div class="nursery-map" id="nurseryMap"></div>
           </section>
           <section class="panel">
-            <p class="eyebrow">Estructura productiva</p><h2>Vivero - nave - mesa - lote</h2>
+            <p class="eyebrow">Estructura productiva</p><h2>14 invernaderos - 9 mesones cada uno</h2>
             <div class="tree-list" id="nurseryTree"></div>
           </section>
         </div>
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Asignación y traslado</p>
+              <h2>Dirigir especie y variedad a invernadero y mesón</h2>
+            </div>
+            <span class="badge">Registro automático</span>
+          </div>
+          <form class="movement-form" id="movementForm">
+            <label>
+              Tipo de movimiento
+              <select id="movementType">
+                <option value="Ingreso">Ingreso de plantas</option>
+                <option value="Traslado">Traslado entre invernaderos</option>
+              </select>
+            </label>
+            <label>
+              Especie
+              <select id="movementSpecies"></select>
+            </label>
+            <label>
+              Variedad
+              <select id="movementVariety"></select>
+            </label>
+            <label>
+              Cantidad de plantas
+              <input id="movementQuantity" type="number" min="1" step="1" placeholder="Ej: 480" required>
+            </label>
+            <label>
+              Invernadero origen
+              <select id="movementFromGreenhouse"></select>
+            </label>
+            <label>
+              Mesón origen
+              <select id="movementFromBench"></select>
+            </label>
+            <label>
+              Invernadero destino
+              <select id="movementToGreenhouse"></select>
+            </label>
+            <label>
+              Mesón destino
+              <select id="movementToBench"></select>
+            </label>
+            <button class="primary-action" type="submit">Registrar movimiento</button>
+          </form>
+          <div class="movement-history" id="movementHistory"></div>
+        </section>
       </section>
 
       <section class="view" id="plants">
         <section class="panel">
           <div class="panel-header"><div><p class="eyebrow">Gestión de plantas</p><h2>Registro productivo por especie y variedad</h2></div><span class="badge">Trazabilidad por lote</span></div>
           <div class="data-table" id="plantsTable"></div>
+        </section>
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Catálogo SynergiaBIO</p>
+              <h2>Especies y variedades separadas por especie</h2>
+            </div>
+            <span class="badge">Códigos RAC-002</span>
+          </div>
+          <div class="catalog-grid" id="speciesCatalog"></div>
         </section>
       </section>
 
@@ -243,7 +301,15 @@
             </div>
             <div class="callout">
               <strong>Diagnóstico orientativo</strong>
-              <p>Este prototipo usa lectura de color/contraste de la imagen y reglas técnicas. Para producción debe entrenarse con imágenes propias, análisis foliar/sustrato, confirmación de laboratorio y catálogo SAG actualizado.</p>
+              <p>Este prototipo prioriza daño visible en hojas, tallos y brotes. Para sospechar Botrytis busca lesión marrón claro o acuosa junto con moho grisáceo, micelio o pelusa aterciopelada sobre tejido afectado. El sustrato, bandejas y entorno se tratan como fondo.</p>
+            </div>
+            <div class="source-box">
+              <strong>Referencia de condición normal</strong>
+              <div id="normalReference"></div>
+            </div>
+            <div class="source-box danger-reference">
+              <strong>Referencia de Botrytis cinerea</strong>
+              <div id="botrytisReference"></div>
             </div>
           </section>
         </div>
